@@ -1,0 +1,84 @@
+<head>
+    <title>This is the playground</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Montseerat", sans-serif;
+        }
+
+
+@keyframes box-wipe{
+    0%{
+        clip-path:inset(25% 100% 25% -50%);
+    }
+    50%{
+        clip-path:inset(25% -50% 25% 100%); 
+    }
+    100%{
+        clip-path: inset(0); 
+    }
+}
+
+
+    </style>
+</head>
+<body class="flex items-center justify-center">
+    <button class="relative size-[200px]   bg-red-300
+    before:absolute before:size-full before:inset-0   before:bg-green-300/20 
+    hover:before:[animation:box-wipe_5s]     
+    "
+    >test background animation</button>
+
+
+</body>
+
+<style>
+    body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.text-container {
+  overflow: hidden;
+  display: inline-block;
+}
+
+.animated-text {
+  font-size: 3em;
+  font-weight: bold;
+  color: #333;
+  position: relative;
+  clip-path: inset(0 100% 0 0);
+  animation: revealText 2s ease-in-out forwards;
+}
+
+@keyframes revealText {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+</style>
+</html>
