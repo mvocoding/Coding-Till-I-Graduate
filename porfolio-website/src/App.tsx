@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Sidebar from './Sidebar'
 import ThemeSwitcher from './ThemeSwitcher';
 import { useTheme } from './ThemeContext';

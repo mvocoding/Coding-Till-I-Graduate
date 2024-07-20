@@ -4,3 +4,8 @@ export interface ModalItem {
     img: string;
     component: React.ReactNode;
 }
+
+export interface TabItem{
+    title: string;
+    content: string;
+}

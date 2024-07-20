@@ -6,9 +6,9 @@ import { ModalItem } from "./model";
 import MyCV from "./MyCV";
 
 export const modalsList: Record<string, ModalItem> = {
-    'home': {
-        name: 'home',
-        text: 'Home',
+    'aboutme': {
+        name: 'aboutme',
+        text: 'About Me',
         img: 'public/images/start-icon.png',
         component: <AboutMe />
     },

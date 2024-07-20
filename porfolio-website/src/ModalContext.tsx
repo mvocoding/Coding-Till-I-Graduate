@@ -15,7 +15,7 @@ const ModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const ModalProvider = ({ children }: ModalProviderProps) => {
     const [params, setParams] = useState<Record<string, any> | null>(null);
-    const [currentModal, setCurrentModal] = useState<string | null>(null);
+    const [currentModal, setCurrentModal] = useState<string | null>('aboutme');
 
     const openModal = (value: string, params: Record<string, any> = {}) => {
         setCurrentModal(value);
