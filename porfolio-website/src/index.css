@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* scollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* scollbar - Track */
+::-webkit-scrollbar-track {
+  background: #343E66;
+}
+
+/* scollbar - Handle */
+::-webkit-scrollbar-thumb {
+  background: #67A8E9;
+  border-radius: 5px;
+}
+
+/* scollbar - Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #548dc7
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  overflow:hidden;
+}
+
+#root {
+  color: #A3DEFF;
+  background: rgb(4, 61, 99);
+  background: linear-gradient(129deg,
+      rgba(4, 61, 99, 1) 0%,
+      rgba(109, 181, 212, 1) 14%,
+      rgba(212, 109, 109, 1) 28%,
+      rgba(149, 109, 212, 1) 42%,
+      rgba(212, 167, 109, 1) 56%,
+      rgba(209, 212, 109, 1) 70%,
+      rgba(109, 212, 139, 1) 74%,
+      rgba(109, 153, 212, 1) 100%);
+  background-size: 1000%;
+  background-position:0;  
+}
+
+#root[data-theme="sky"]{
+  background-position:0;  
+}
+
+#root[data-theme="purple"]{
+  background-position:42%;  
+}
+
+#root[data-theme="yellow"]{
+  background-position:56%;  
+}
+
+#root[data-theme="lime"]{
+  background-position:70%;  
+}
+
+#root[data-theme="emerald"]{
+  background-position:84%;  
+}
+
+#root[data-theme="blue"]{
+  background-position:100%;  
+}
+
+.btn-primary {
+  @apply border border-white/20 rounded ring-4 ring-black/5 py-2 px-4 bg-black/20 px-8 outline-none ring-0 text-sm relative overflow-hidden isolate transition-all duration-300 flex items-center justify-center;
+}
+
+.btn-primary::before {
+  @apply absolute inset-0 content-[''] bg-transparent -z-10 transition-all duration-300;
+}
+
+.btn-primary:hover::before, .btn-primary.active::before {
+  @apply bg-rose-500/80;
+}

@@ -1,3 +1,4 @@
+import threading
 import json
 from appium import webdriver
 import time
@@ -26,14 +27,7 @@ def sendTelegram(msg_body):
         sendTelegram(msg_body)
         
 
-desired_cap = {
-  "platformName": "Android",
-  "appium:platformVersion": "15.0",
-  "appium:deviceName": "emulator-5554",
-  "appium:App": "C:\\\\test.apk",
-  "appium:automationName": "UiAutomator2",
-  "appium:ensureWebviewsHavePages": "true"
-}
+
 
 with open('config.json', 'r', encoding='utf-8') as f:
     config = json.load(f)
@@ -59,79 +53,131 @@ min_hour = 6
 
 url = 'http://localhost:4724'
 
-driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(desired_cap))
-time.sleep(1)  # Adjust as necessary depending on how long the call takes to initiate
 
-running = True
+# Function to run the Appium script on a device
+def run_appium_script(device_config):
+    url = device_config["url"]
+    desired_cap = device_config["desired_cap"]
 
-while running:
-    try:
-        element = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.TextView[@resource-id="com.entire.entirehrstaffing:id/refresh_button"]')
-        element.click()
-        time.sleep(1.5)
-        
-        # Locate the ScrollView
-        elements = driver.find_elements(by=AppiumBy.XPATH, value=date_query)
-        for element in elements:
-            element.click()
-            time.sleep(1)
-            
-            shiftdetails_elements = driver.find_elements(by=AppiumBy.XPATH, value=location_query)
-            for shiftdetail_el in shiftdetails_elements:
-                shift_time_element = shiftdetail_el.find_element(by=AppiumBy.XPATH, value=time_query)
-                shift_time = shift_time_element.text.split(' to ')
-                start_datetime = datetime.strptime(shift_time[0], "%H:%M")
-                end_datetime = datetime.strptime(shift_time[1], "%H:%M")
+    driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(desired_cap))
+    time.sleep(1)  # Adjust as necessary depending on how long the call takes to initiate
 
-                if end_datetime < start_datetime:
-                    end_datetime += timedelta(days=1)
+    running = True
 
-                duration_seconds = (end_datetime - start_datetime).total_seconds()
-                if start_datetime >= time_start and start_datetime <= maxtime_start and duration_seconds >= min_hour * 3600:
-                    acceptshift_element = shiftdetail_el.find_element(by=AppiumBy.XPATH, value=acceptshift_query)
-                    acceptshift_element.click()
-                    time.sleep(1)
-                    okshift_element = driver.find_element(by=AppiumBy.XPATH, value=okshift_query)
-                    okshift_element.click()
-                    
-                    running = False
-    
-            if not running:
-                with open('page_source.html', 'w', encoding='utf-8') as f:
-                    f.write(driver.page_source)
-                
-                sendTelegram("ĐĂNG KÍ SHIFT THÀNH CÔNG, MÁ GIANG VÔ APP KIỂM TRA NHA !!!")
-                break
-            
-            else:
-                element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.RelativeLayout[@resource-id='com.entire.entirehrstaffing:id/left_side_navigation']")
-                element.click()
-                time.sleep(1.5)
-            
-                
-    except Exception as e:
+    while running:
         try:
-            sendTelegram("Có Shift Mới")
-            time.sleep(5)
+            element = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.TextView[@resource-id="com.entire.entirehrstaffing:id/refresh_button"]')
+            time.sleep(1)
+            element.click()
             
-            try:
-                # First try to find the refresh button
-                element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.TextView[@resource-id='com.entire.entirehrstaffing:id/refresh_button']")
-            except Exception as e:
-                try:
-                    # If refresh button is not found, try to find the left side navigation
-                    element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.RelativeLayout[@resource-id='com.entire.entirehrstaffing:id/left_side_navigation']")
-                except Exception as e:
-                    element = None
-
-            # Click the element if it exists
-            if element:
+            elements = driver.find_elements(by=AppiumBy.XPATH, value=date_query)
+            for element in elements:
                 element.click()
                 
+                shiftdetails_elements = driver.find_elements(by=AppiumBy.XPATH, value=location_query)
+                for shiftdetail_el in shiftdetails_elements:
+                    shift_time_element = shiftdetail_el.find_element(by=AppiumBy.XPATH, value=time_query)
+                    shift_time = shift_time_element.text.split(' to ')
+                    start_datetime = datetime.strptime(shift_time[0], "%H:%M")
+                    end_datetime = datetime.strptime(shift_time[1], "%H:%M")
+
+                    if end_datetime < start_datetime:
+                        end_datetime += timedelta(days=1)
+
+                    duration_seconds = (end_datetime - start_datetime).total_seconds()
+                    if start_datetime >= time_start and start_datetime <= maxtime_start and duration_seconds >= min_hour * 3600:
+                        acceptshift_element = shiftdetail_el.find_element(by=AppiumBy.XPATH, value=acceptshift_query)
+                        acceptshift_element.click()
+                        okshift_element = driver.find_element(by=AppiumBy.XPATH, value=okshift_query)
+                        okshift_element.click()
+                        
+                        running = False
+            
+                if not running:
+                    with open('page_source.html', 'w', encoding='utf-8') as f:
+                        f.write(driver.page_source)
+                    
+                    sendTelegram("ĐĂNG KÍ SHIFT THÀNH CÔNG, MÁ GIANG VÔ APP KIỂM TRA NHA !!!")
+                    break
+                
+                else:
+                    element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.RelativeLayout[@resource-id='com.entire.entirehrstaffing:id/left_side_navigation']")
+                    element.click()
+                
+                    
         except Exception as e:
-            continue
+            try:
+                try:
+                    element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.TextView[@resource-id='com.entire.entirehrstaffing:id/refresh_button']")
+                except Exception as e:
+                    try:
+                        element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.RelativeLayout[@resource-id='com.entire.entirehrstaffing:id/left_side_navigation']")
+                    except:
+                        try:
+                            element = driver.find_element(by=AppiumBy.XPATH, value="//android.widget.Button[@resource-id='android:id/button1' and @text='OK']")
+                        except:
+                            element = None
 
-# Wait for a few seconds to see the call initiation
+                if element:
+                    element.click()
+                    
+            except Exception as e:
+                continue
 
-# Quit the driver session
-driver.quit()
+    driver.quit()
+
+
+# Device configurations
+device_configs = [
+    {
+        "url": "http://localhost:4723",
+        "desired_cap": {
+            "platformName": "Android",
+            "appium:platformVersion": "15.0",
+            "appium:deviceName": "emulator-5554",
+            "appium:udid": "emulator-5554",
+            "appium:App": "C:\\\\test.apk",
+            "appium:automationName": "UiAutomator2",
+            "appium:ensureWebviewsHavePages": "true"
+        }
+    },
+    {
+        "url": "http://localhost:4724",
+        "desired_cap": {
+            "platformName": "Android",
+            "appium:platformVersion": "15.0",
+            "appium:deviceName": "emulator-5556",
+            "appium:udid": "emulator-5556",
+            "appium:App": "C:\\\\test.apk",
+            "appium:automationName": "UiAutomator2",
+            "appium:ensureWebviewsHavePages": "true"
+        }
+    },
+        {
+        "url": "http://localhost:4725",
+        "desired_cap": {
+            "platformName": "Android",
+            "appium:platformVersion": "15.0",
+            "appium:deviceName": "emulator-5558",
+            "appium:udid": "emulator-5558",
+            "appium:App": "C:\\\\test.apk",
+            "appium:automationName": "UiAutomator2",
+            "appium:ensureWebviewsHavePages": "true"
+        }
+    }
+]
+
+# List to hold threads
+threads = []
+
+# Create and start a thread for each device
+for config in device_configs:
+    thread = threading.Thread(target=run_appium_script, args=(config,))
+    thread.start()
+    threads.append(thread)
+
+# Wait for all threads to complete
+for thread in threads:
+    thread.join()
+
+print("All tests completed.")

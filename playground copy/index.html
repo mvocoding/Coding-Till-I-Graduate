@@ -21,6 +21,27 @@
       box-sizing: border-box;
       font-family: "Montseerat", sans-serif;
     }
+
+    /* scollbar width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* scollbar - Track */
+    ::-webkit-scrollbar-track {
+      background: #343E66;
+    }
+
+    /* scollbar - Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #67A8E9;
+      border-radius: 5px;
+    }
+
+    /* scollbar - Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #548dc7
+    }
   </style>
 
 
@@ -33,104 +54,356 @@
         console.log(resp);
       })
   </script>
-</head>
 
-<body class="
-text-lg    
+</head>
+<style>
+  @keyframes borderBlink {
+
+    0%,
+    100% {
+      border-color: red;
+    }
+
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  .material-fill-1 {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 48
+  }
+
+  #bg-mask {
+    background: rgb(4, 61, 99);
+    background: linear-gradient(129deg,
+        rgba(4, 61, 99, 1) 0%,
+        rgba(109, 181, 212, 1) 14%,
+        rgba(212, 109, 109, 1) 28%,
+        rgba(149, 109, 212, 1) 42%,
+        rgba(212, 167, 109, 1) 56%,
+        rgba(209, 212, 109, 1) 70%,
+        rgba(109, 212, 139, 1) 74%,
+        rgba(109, 153, 212, 1) 100%);
+    background-size: 1000%;
+  }
+</style>
+
+<body class=" 
+text-lg      
 min-h-screen w-full 
 flex items-center justify-center
-bg-gradient-to-t from-violet-400 via-rose-200 to-indigo-200
- ">
+bg-[#141728] p-10 text-gray-300 
+[&_input]:sr-only">
 
-  <div class="relative h-[700px] max-w-sm    w-full  
- border-[7px] rounded-[2rem]    border-zinc-800  
+  <html>
 
-  before:-z-10 
- before:bg-no-repeat before:opacity-50  before:rounded-[2rem]   
- before:absolute
- before:inset-0 
- before:bg-[url('https://raw.githubusercontent.com/cbolson/icodethis-challenges/main/assets/images/bg-iphone-birds.webp')]  
- ">
-    <div class="absolute w-12  h-2 bg-zinc-800 -left-8  top-28 rotate-90 rounded-xl "></div>
-    <div class="absolute w-12  h-2 bg-zinc-800 -left-8  top-44    rotate-90 rounded-xl "></div>
-    <div class="absolute w-20  h-2 bg-zinc-800 -right-12  top-36  rotate-90 rounded-xl "></div>
-    <header class="relative  flex  items-center justify-between  p-3  ">
-      <p>12:37 pm</p>
-      <div class="
-      before:absolute before:size-3  before:rounded-full 
-      before:bg-yellow-300 before:right-2 
-      flex items-center   
-      absolute left-1/2 -translate-x-1/2  w-[35%] h-8  rounded-full  bg-zinc-800  "></div>
-      <div class="flex gap-x-1 text-zinc-800  ">
-        <span class="material-symbols-outlined">
-          bluetooth
-        </span>
-        <span class="material-symbols-outlined">
-          signal_cellular_alt
-        </span>
-        <span class="material-symbols-outlined">
-          wifi
-        </span>
-        <span class="material-symbols-outlined rotate-90">
-          battery_5_bar
-        </span>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=montserrat:300,500,700" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  </head>
+
+  <body class="font-montserrat bg-black flex justify-center text-gray-200 items-center min-h-screen p-8 py-16 Xbg-gradient-to-br from-rose-100 from-[50%] to-[50%] to-sky-950
+        before:bg-[url(https://raw.githubusercontent.com/cbolson/icodethis-challenges/main/assets/images/bg-diagonal-square.webp)]
+        before:inset-0
+        before:w-full
+        before:h-full
+        before:fixed
+        before:opacity-30
+        before:bg-cover
+        before:bg-center
+        before:bg-no-repeat
+        before:-z-10
+        Xbefore:rotate-90
+    ">
+
+
+
+
+    <div class="grid grid-cols-[600px_1fr] ">
+      <div class="space-y-5  ">
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+        <button><svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg> Projects</button>
+
       </div>
-    </header>
-
-    <div class="mt-6  flex justify-center">
-      <div id="missedcall" class=" 
-      [&.active>div]:max-h-[1000px] [&.active>div]:visible 
-      [&.active_button]:translate-x-0 
-      [&.active_button]:delay-200    
-
-
-      relative w-[80%] space-y-5 ">
-        <button class="
-      hover:scale-x-105   transition-all duration-200  
-      text-gray-200    flex items-center p-5 gap-5  w-full   h-16  bg-zinc-900 rounded-full ">
-          <span class="text-red-400  text-3xl   material-symbols-outlined">
-            phone_callback
-          </span>
-          <h3 class="font-semibold  text-lg ">Missed Call</h3>
-        </button>
-        <div class="overflow-hidden isolate
-        max-h-0 invisible transition-all duration-300 
-        w-full bg-white rounded-3xl py-5 
-        grid grid-rows-[1fr_1fr] text-base   place-content-center ">
-          <div class="flex items-center justify-center gap-4 ">
-            <img src="data:image/webp;base64,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U+wTtd6YL6bw0RKz9KP8eo4F3djoxXjNpdKImjjcwxTpbWCP6hRif506YpHkR1mewUi0Mwiyae3YiJn65jsjGlzrNF1gqpZOX2y8lR718yPQkQA0A6rQAe4OUcPtJAAARVhJRmwBAABFeGlmAABJSSoACAAAAAUADgECAPsAAABKAAAAmIICABEAAABFAQAAEgEDAAEAAAABAAAAGgEFAAEAAABWAQAAGwEFAAEAAABeAQAAAAAAAEVBU1QgUlVUSEVSRk9SRCwgTkVXIEpFUlNFWSAtIEpVTkUgMjU6IExpb25lbCBNZXNzaSBvZiBBcmdlbnRpbmEgZ2VzdHVyZXMgZHVyaW5nIHRoZSBDT05NRUJPTCBDb3BhIEFtZXJpY2EgMjAyNCBtYXRjaCBiZXR3ZWVuIENoaWxlIGFuZCBBcmdlbnRpbmEgYXQgTWV0TGlmZSBTdGFkaXVtIG9uIEp1bmUgMjUsIDIwMjQgaW4gRWFzdCBSdXRoZXJmb3JkLCBOZXcgSmVyc2V5LiAoUGhvdG8gYnkgTWl0Y2hlbGwgTGVmZi9HZXR0eSBJbWFnZXMpMjAyNCBHZXR0eSBJbWFnZXMsAQAAAQAAACwBAAABAAAAWE1QIG8GAABodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+Cjx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iPgoJPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KCQk8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOklwdGM0eG1wQ29yZT0iaHR0cDovL2lwdGMub3JnL3N0ZC9JcHRjNHhtcENvcmUvMS4wL3htbG5zLyIgICB4bWxuczpHZXR0eUltYWdlc0dJRlQ9Imh0dHA6Ly94bXAuZ2V0dHlpbWFnZXMuY29tL2dpZnQvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczpwbHVzPSJodHRwOi8vbnMudXNlcGx1cy5vcmcvbGRmL3htcC8xLjAvIiAgeG1sbnM6aXB0Y0V4dD0iaHR0cDovL2lwdGMub3JnL3N0ZC9JcHRjNHhtcEV4dC8yMDA4LTAyLTI5LyIgeG1sbnM6eG1wUmlnaHRzPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvcmlnaHRzLyIgZGM6UmlnaHRzPSIyMDI0IEdldHR5IEltYWdlcyIgcGhvdG9zaG9wOkNyZWRpdD0iR2V0dHkgSW1hZ2VzIiBHZXR0eUltYWdlc0dJRlQ6QXNzZXRJRD0iMjE1OTI3NTg4NiIgeG1wUmlnaHRzOldlYlN0YXRlbWVudD0iaHR0cHM6Ly93d3cuZ2V0dHlpbWFnZXMuY29tL2V1bGE/dXRtX21lZGl1bT1vcmdhbmljJmFtcDt1dG1fc291cmNlPWdvb2dsZSZhbXA7dXRtX2NhbXBhaWduPWlwdGN1cmwiIHBsdXM6RGF0YU1pbmluZz0iaHR0cDovL25zLnVzZXBsdXMub3JnL2xkZi92b2NhYi9ETUktUFJPSElCSVRFRC1FWENFUFRTRUFSQ0hFTkdJTkVJTkRFWElORyIgPgo8ZGM6Y3JlYXRvcj48cmRmOlNlcT48cmRmOmxpPk1pdGNoZWxsIExlZmY8L3JkZjpsaT48L3JkZjpTZXE+PC9kYzpjcmVhdG9yPjxkYzpkZXNjcmlwdGlvbj48cmRmOkFsdD48cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiPkVBU1QgUlVUSEVSRk9SRCwgTkVXIEpFUlNFWSAtIEpVTkUgMjU6IExpb25lbCBNZXNzaSBvZiBBcmdlbnRpbmEgZ2VzdHVyZXMgZHVyaW5nIHRoZSBDT05NRUJPTCBDb3BhIEFtZXJpY2EgMjAyNCBtYXRjaCBiZXR3ZWVuIENoaWxlIGFuZCBBcmdlbnRpbmEgYXQgTWV0TGlmZSBTdGFkaXVtIG9uIEp1bmUgMjUsIDIwMjQgaW4gRWFzdCBSdXRoZXJmb3JkLCBOZXcgSmVyc2V5LiAoUGhvdG8gYnkgTWl0Y2hlbGwgTGVmZi9HZXR0eSBJbWFnZXMpPC9yZGY6bGk+PC9yZGY6QWx0PjwvZGM6ZGVzY3JpcHRpb24+CjxwbHVzOkxpY2Vuc29yPjxyZGY6U2VxPjxyZGY6bGkgcmRmOnBhcnNlVHlwZT0nUmVzb3VyY2UnPjxwbHVzOkxpY2Vuc29yVVJMPmh0dHBzOi8vd3d3LmdldHR5aW1hZ2VzLmNvbS9kZXRhaWwvMjE1OTI3NTg4Nj91dG1fbWVkaXVtPW9yZ2FuaWMmYW1wO3V0bV9zb3VyY2U9Z29vZ2xlJmFtcDt1dG1fY2FtcGFpZ249aXB0Y3VybDwvcGx1czpMaWNlbnNvclVSTD48L3JkZjpsaT48L3JkZjpTZXE+PC9wbHVzOkxpY2Vuc29yPgoJCTwvcmRmOkRlc2NyaXB0aW9uPgoJPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KPD94cGFja2V0IGVuZD0idyI/PgoA" alt=""
-            class="size-16   rounded-full ">
-          <div>
-            <p>Missed a call from</p>
-            <h3 class="text-lg font-semibold">Messi</h3>
-            <p class="opacity-70">09:17 10 Mar, 2024</p>
+      <div class="bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  py-8 px-6 sm:px-14 space-y-10 shadow-lg  relative
+              
+              peer-checked/theme-1:[&_#toggle-1]:rounded-md
+              peer-checked/theme-2:[&_#toggle-2]:rounded-md
+              peer-checked/theme-3:[&_#toggle-3]:rounded-md
+              peer-checked/theme-4:[&_#toggle-4]:rounded-md
+              peer-checked/theme-5:[&_#toggle-5]:rounded-md
+              peer-checked/theme-6:[&_#toggle-6]:rounded-md
+              peer-checked/theme-7:[&_#toggle-7]:rounded-md
+              peer-checked/theme-8:[&_#toggle-8]:rounded-md
+      
+              peer-checked/theme-toggle:[&_#panel-toggle]:scale-x-100
+          ">
+      
+        <header class="flex items-center max-[500px]:flex-col gap-5 sm:gap-10">
+          <div
+            class="rounded-full bg-black/20 border border-white/20 ring-4 ring-black/5 text-rose-500 hover:text-zinc-200 transition-all duration-300 p-2 grid place-content-center">
+            <svg class="w-20" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg"
+              xmlns:svg="http://www.w3.org/2000/svg" enable-background="new 0 0 500 500" version="1.1"
+              xml:space="preserve">
+      
+              <path id="cb" clip-rule="evenodd" fill="currentColor" fill-rule="evenodd"
+                d="m97.42,60.69c0,3.38 -2.74,6.12 -6.12,6.12s-6.11,-2.74 -6.11,-6.12c0,-3.37 2.73,-6.11 6.11,-6.11s6.12,2.74 6.12,6.11m-38.72,6.12c3.38,0 6.11,-2.74 6.11,-6.12c0,-3.37 -2.73,-6.11 -6.11,-6.11c-3.38,0 -6.11,2.74 -6.11,6.11c0,3.38 2.73,6.12 6.11,6.12m4.96,20.23c11.35,4.54 24.31,1.87 32.96,-6.77c5.75,-5.72 8.97,-13.5 8.94,-21.62c0,-7.3 -6.28,-13.24 -13.8,-13.24c-7.51,0 -13.62,5.94 -13.62,13.24l0,14.27l-6.29,0l0,-14.27c0,-7.3 -6.11,-13.24 -13.62,-13.24s-13.8,5.94 -13.8,13.24c0,0.26 0,0.52 0.01,0.77c0.31,12.22 7.86,23.09 19.22,27.62m41.91,38.59c-3.46,-0.31 -6.88,-0.89 -10.25,-1.73c-0.63,-11.69 -6.81,-22.37 -16.62,-28.75c10.93,-1.11 20.79,-7.06 26.87,-16.22l0,46.7zm-50.15,-30.12c7.33,11.16 17.8,19.89 30.09,25.11c1.16,0.48 2.33,0.94 3.51,1.36c-1.98,-15.24 -14.95,-26.64 -30.32,-26.65c-1.1,0 -2.19,0.06 -3.28,0.18m-2.03,-58.47c11.93,-11.93 31.29,-11.93 43.23,0c1.23,1.23 2.35,2.57 3.36,3.99c-2.59,-1.14 -5.38,-1.73 -8.21,-1.73c-7.04,0 -13.23,3.57 -16.77,8.94c-3.54,-5.37 -9.73,-8.94 -16.77,-8.94c-2.83,0 -5.62,0.59 -8.21,1.73c1.01,-1.42 2.13,-2.76 3.37,-3.99m21.61,-15.06c-20.26,0 -36.68,16.42 -36.68,36.68c-0.02,11.38 2.63,22.62 7.73,32.8c0.93,1.85 1.93,3.66 3.01,5.42c9.16,14.99 23.38,26.2 40.09,31.61c1.96,0.63 3.96,1.18 5.98,1.65c3.44,0.8 6.92,1.34 10.44,1.63c2.01,0.16 4.05,0.25 6.11,0.25l0,-73.36c0,-20.26 -16.42,-36.68 -36.68,-36.68">
+              </path>
+            </svg>
           </div>
+          <div>
+            <h1 class="font-medium text-xl tracking-wider mb-2">Product Designer at Wisely</h1>
+            <p class="flex items-center font-thin text-zinc-400 mb-4">
+              <span class="material-symbols-outlined material-fill-1">location_on</span>
+              Austin, TX or Remote
+            </p>
+            <div class="[grid-area:btns] mt-2 flex  items-center gap-4 whitespace-nowrap
+                          *:border
+                          *:border-white/20
+                          *:rounded
+                          *:ring-4
+                          *:ring-black/5
+                          *:py-2
+                          *:px-4
+                          *:bg-black/20
+                          sm:*:px-8
+                          max-[400px]:*:w-full
+                          *:outline-none
+                          *:ring-0
+                          *:text-sm
+                          *:relative
+                          *:overflow-hidden
+                          *:isolate
+                          *:transition-all
+                          *:duration-300
+                          Xhover:*:text-zinc-700
+                          Xfocus-visible:*:text-zinc-700
+                          before:*:absolute
+                          before:*:inset-0
+                          before:*:bg-rose-500
+                          before:*:-z-10
+                          before:*:transition-all
+                          before:*:duration-300
+                          
+                          first:before:*:translate-x-full
+                          last:before:*:-translate-x-full
+                          hover:before:*:translate-x-0
+                          focus-visible:before:*:translate-x-0 
+                      ">
+              <button type="button">Save</button>
+              <button type="button">Apply</button>
+            </div>
+          </div>
+        </header>
+      
+        <section class="rounded-md bg-black/40 ring-8 ring-black/5 text-zinc-400 py-8 px-6 border border-zinc-700/30 flex flex-col sm:flex-row gap-8 sm:gap-2
+                  *:text-sm
+                  *:space-y-2
+                  *:flex-1
+                  [&_h2]:uppercase
+                  marker:[&_ul]:text-zinc-400
+                  [&_ul]:list-disc
+                  [&_ul]:pl-2
+                  [&_ul]:space-y-1 
+                  [&_ul]:text-zinc-300
+              ">
+      
+          <div>
+            Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web
+            development technologies and specialize in software development frameworks such as React, ASP .NET Core.
+            Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving
+            in Australia, I am eager to resume my career in software development. I have completed my Computer Science
+            degree and am set to finish my Master's degree in November 2025.
+          </div>
+      
+        </section>
+        <section id="list-interests" class="grid [grid-template-columns:repeat(auto-fill,minmax(8rem,1fr))] gap-2 ">
+          <!--  interests loaded here -->
+        </section>
+      
+      
+        <section class="text-center">
+          <button type="button"
+            class="Xtext-sm border-none outline-none ring-0 transition duration-300  hover:text-rose-500 focus-within:text-rose-500">View
+            Job Post</button>
+        </section>
+      
+        <label for="theme-toggle"
+          class="material-symbols-outlined cursor-pointer absolute -top-6 right-6 outline-none border-none ring-0 transition-all duration-300 hover:scale-150 focus-visible:scale-150">more_horiz</label>
+      
+        <!-- theme toggle switches -->
+        <div id="panel-toggle" class="absolute -top-24 -right-0 sm:-top-10 sm:-right-[4.5rem] rounded-lg bg-black/40 p-4 flex sm:flex-col gap-2 border border-white/20 ring-8 ring-black/5 transition-all duration-300 scale-x-0 origin-right sm:origin-left
+                  *:cursor-pointer
+                  *:rounded-[30px]
+                  *:size-5
+                  *:transition-all
+                  *:duration-300
+                  hover:*:scale-125
+                  hover:*:rounded-[10px]
+              ">
+          <label id="toggle-1" for="theme-1" class="bg-sky-500" aria-label="theme sky"></label>
+          <label id="toggle-2" for="theme-2" class="bg-rose-300" aria-label="theme rose"></label>
+          <label id="toggle-3" for="theme-3" class="bg-rose-500" aria-label="theme red"></label>
+          <label id="toggle-4" for="theme-4" class="bg-purple-500" aria-label="theme purple"></label>
+          <label id="toggle-5" for="theme-5" class="bg-yellow-400" aria-label="theme yellow"></label>
+          <label id="toggle-6" for="theme-6" class="bg-lime-500" aria-label="theme lime"></label>
+          <label id="toggle-7" for="theme-7" class="bg-emerald-400" aria-label="theme emerald"></label>
+          <label id="toggle-8" for="theme-8" class="bg-blue-500" aria-label="theme blue"></label>
+      
         </div>
-        <div class="mt-5 text-white flex *:flex-1 gap-5  ">
-          <button class="
-          hover:bg-cyan-700 hover:scale-105
-          -translate-x-[1000px] p-2  bg-cyan-400 rounded-xl transition-[transform]   duration-50">
-            <span class=" material-symbols-outlined">
-              mode_comment
-              </span>
-          </button>
-          <button class="
-          hover:bg-green-700 hover:scale-105
-          translate-x-[1000px] p-2   bg-green-400  rounded-xl transition-[transform]  duration-50">
-            <span class="material-symbols-outlined">
-              call 
-              </span> 
-          </button>
-        </div>
+      </div>
     </div>
-  </div>
 
+    <input type="radio" name="theme" id="theme-1" class="sr-only peer/theme-1">
+    <input type="radio" name="theme" id="theme-2" class="sr-only peer/theme-2">
+    <input type="radio" name="theme" id="theme-3" class="sr-only peer/theme-3">
+    <input type="radio" name="theme" id="theme-4" class="sr-only peer/theme-4" checked>
+    <input type="radio" name="theme" id="theme-5" class="sr-only peer/theme-5">
+    <input type="radio" name="theme" id="theme-6" class="sr-only peer/theme-6">
+    <input type="radio" name="theme" id="theme-7" class="sr-only peer/theme-7">
+    <input type="checkbox" name="theme-toggle" id="theme-toggle" class="sr-only peer/theme-toggle">
+    <input type="radio" name="theme" id="theme-8" class="sr-only peer/theme-8">
+    <!-- bg mask -->
+    <div id="bg-mask" class="fixed inset-0  -z-20 pointer-events-none transition-all duration-500 
+          
+            peer-checked/theme-1:![background-position:0%]
+            peer-checked/theme-2:![background-position:14%]
+            peer-checked/theme-3:![background-position:28%]
+            peer-checked/theme-4:![background-position:42%]
+            peer-checked/theme-5:![background-position:56%]
+            peer-checked/theme-6:![background-position:70%]
+            peer-checked/theme-7:![background-position:84%]
+            peer-checked/theme-8:![background-position:100%]
+        "></div>
+
+    <template id="tpl-interest">
+      <div class="grid place-items-center  ">
+        <input class="peer sr-only" id=""" type=" checkbox" name="interest[]" value="" />
+        <label for="" class="relative grid place-items-center rounded-full bg-white  aspect-square cursor-pointer 
+              transition
+              isolate
+              before:bg-blue-200 
+              before:absolute
+              before:inset-0
+              before:rounded-full
+              before:-z-10
+              before:scale-0
+              before:transition
+              hover:before:scale-100
+      
+              [&_svg]:w-16 
+              peer-checked:[&>.img]:opacity-30
+              peer-checked:[&>.check]:scale-100
+              ">
+          <div class="img transition duration-300"></div>
+
+          <svg class="check absolute w-40 text-blue-800 scale-0 transition duration-300 " viewBox="0 0 24 24"
+            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path d="M5 12l5 5l10 -10"></path>
+          </svg>
+
+        </label>
+        <h3></h3>
+      </div>
+    </template>
+
+
+    <script>
+      const interests = [
+        {
+          id: 1,
+          desc: 'HTML',
+          img: '<svg  viewBox="0 0 256 361"><path fill="#E44D26" d="m255.555 70.766l-23.241 260.36l-104.47 28.962l-104.182-28.922L.445 70.766h255.11Z"/><path fill="#F16529" d="m128 337.95l84.417-23.403l19.86-222.49H128V337.95Z"/><path fill="#EBEBEB" d="M82.82 155.932H128v-31.937H47.917l.764 8.568l7.85 88.01H128v-31.937H85.739l-2.919-32.704Zm7.198 80.61h-32.06l4.474 50.146l65.421 18.16l.147-.04V271.58l-.14.037l-35.568-9.604l-2.274-25.471Z"/><path d="M24.18 0h16.23v16.035h14.847V0h16.231v48.558h-16.23v-16.26H40.411v16.26h-16.23V0Zm68.65 16.103H78.544V0h44.814v16.103h-14.295v32.455h-16.23V16.103h-.001ZM130.47 0h16.923l10.41 17.062L168.203 0h16.93v48.558h-16.164V24.49l-11.166 17.265h-.28L146.35 24.49v24.068h-15.88V0Zm62.74 0h16.235v32.508h22.824v16.05h-39.06V0Z"/><path fill="#FFF" d="M127.89 220.573h39.327l-3.708 41.42l-35.62 9.614v33.226l65.473-18.145l.48-5.396l7.506-84.08l.779-8.576H127.89v31.937Zm0-64.719v.078h77.143l.64-7.178l1.456-16.191l.763-8.568H127.89v31.86Z"/></svg>',
+          checked: false,
+        },
+        {
+          id: 2,
+          desc: 'CSS',
+          img: '<svg  viewBox="0 0 32 32"><path fill="#1572b6" d="M5.902 27.201L3.656 2h24.688l-2.249 25.197L15.985 30L5.902 27.201z"/><path fill="#33a9dc" d="m16 27.858l8.17-2.265l1.922-21.532H16v23.797z"/><path fill="#fff" d="M16 13.191h4.09l.282-3.165H16V6.935h7.75l-.074.829l-.759 8.518H16v-3.091z"/><path fill="#ebebeb" d="m16.019 21.218l-.014.004l-3.442-.93l-.22-2.465H9.24l.433 4.853l6.331 1.758l.015-.004v-3.216z"/><path fill="#fff" d="m19.827 16.151l-.372 4.139l-3.447.93v3.216l6.336-1.756l.047-.522l.537-6.007h-3.101z"/><path fill="#ebebeb" d="M16.011 6.935v3.091H8.545l-.062-.695l-.141-1.567l-.074-.829h7.743zM16 13.191v3.091h-3.399l-.062-.695l-.14-1.567l-.074-.829H16z"/></svg>',
+          checked: false,
+        },
+        {
+          id: 3,
+          desc: 'JavaScript',
+          img: '<svg   viewBox="0 0 256 256"><path fill="#F7DF1E" d="M0 0h256v256H0V0Z"/><path d="m67.312 213.932l19.59-11.856c3.78 6.701 7.218 12.371 15.465 12.371c7.905 0 12.89-3.092 12.89-15.12v-81.798h24.057v82.138c0 24.917-14.606 36.259-35.916 36.259c-19.245 0-30.416-9.967-36.087-21.996m85.07-2.576l19.588-11.341c5.157 8.421 11.859 14.607 23.715 14.607c9.969 0 16.325-4.984 16.325-11.858c0-8.248-6.53-11.17-17.528-15.98l-6.013-2.58c-17.357-7.387-28.87-16.667-28.87-36.257c0-18.044 13.747-31.792 35.228-31.792c15.294 0 26.292 5.328 34.196 19.247l-18.732 12.03c-4.125-7.389-8.591-10.31-15.465-10.31c-7.046 0-11.514 4.468-11.514 10.31c0 7.217 4.468 10.14 14.778 14.608l6.014 2.577c20.45 8.765 31.963 17.7 31.963 37.804c0 21.654-17.012 33.51-39.867 33.51c-22.339 0-36.774-10.654-43.819-24.574"/></svg>',
+          checked: false,
+        },
+        {
+          id: 4,
+          img: '<svg   viewBox="0 0 256 135"><defs><radialGradient id="logosPhp0" cx=".837" cy="-125.811" r="363.057" gradientTransform="matrix(.463 0 0 .463 76.464 81.918)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#FFF"/><stop offset=".5" stop-color="#4C6B97"/><stop offset="1" stop-color="#231F20"/></radialGradient></defs><ellipse cx="128" cy="67.3" fill="url(#logosPhp0)" rx="128" ry="67.3"/><ellipse cx="128" cy="67.3" fill="#6181B6" rx="123" ry="62.3"/><path fill="#FFF" d="m152.9 87.5l6.1-31.4c1.4-7.1.2-12.4-3.4-15.7c-3.5-3.2-9.5-4.8-18.3-4.8h-10.6l3-15.6c.1-.6 0-1.2-.4-1.7s-.9-.7-1.5-.7h-14.6c-1 0-1.8.7-2 1.6l-6.5 33.3c-.6-3.8-2-7-4.4-9.6c-4.3-4.9-11-7.4-20.1-7.4H52.1c-1 0-1.8.7-2 1.6L37 104.7c-.1.6 0 1.2.4 1.7s.9.7 1.5.7h14.7c1 0 1.8-.7 2-1.6l3.2-16.3h10.9c5.7 0 10.6-.6 14.3-1.8c3.9-1.3 7.4-3.4 10.5-6.3c2.5-2.3 4.6-4.9 6.2-7.7l-2.6 13.5c-.1.6 0 1.2.4 1.7s.9.7 1.5.7h14.6c1 0 1.8-.7 2-1.6l7.2-37h10c4.3 0 5.5.8 5.9 1.2c.3.3.9 1.5.2 5.2L134.1 87c-.1.6 0 1.2.4 1.7s.9.7 1.5.7h15c.9-.3 1.7-1 1.9-1.9zm-67.6-26c-.9 4.7-2.6 8.1-5.1 10c-2.5 1.9-6.6 2.9-12 2.9h-6.5l4.7-24.2h8.4c6.2 0 8.7 1.3 9.7 2.4c1.3 1.6 1.6 4.7.8 8.9zm130-18.6c-4.3-4.9-11-7.4-20.1-7.4h-28.3c-1 0-1.8.7-2 1.6l-13.1 67.5c-.1.6 0 1.2.4 1.7s.9.7 1.5.7h14.7c1 0 1.8-.7 2-1.6l3.2-16.3h10.9c5.7 0 10.6-.6 14.3-1.8c3.9-1.3 7.4-3.4 10.5-6.3c2.6-2.4 4.8-5.1 6.4-8c1.6-2.9 2.8-6.1 3.5-9.6c1.7-8.7.4-15.5-3.9-20.5zM200 61.5c-.9 4.7-2.6 8.1-5.1 10c-2.5 1.9-6.6 2.9-12 2.9h-6.5l4.7-24.2h8.4c6.2 0 8.7 1.3 9.7 2.4c1.4 1.6 1.7 4.7.8 8.9z"/><path fill="#000004" d="M74.8 48.2c5.6 0 9.3 1 11.2 3.1c1.9 2.1 2.3 5.6 1.3 10.6c-1 5.2-3 9-5.9 11.2c-2.9 2.2-7.3 3.3-13.2 3.3h-8.9l5.5-28.2h10zM39 105h14.7l3.5-17.9h12.6c5.6 0 10.1-.6 13.7-1.8c3.6-1.2 6.8-3.1 9.8-5.9c2.5-2.3 4.5-4.8 6-7.5s2.6-5.7 3.2-9c1.6-8 .4-14.2-3.5-18.7s-10.1-6.7-18.6-6.7H52.1L39 105zm74.3-85.4h14.6l-3.5 17.9h13c8.2 0 13.8 1.4 16.9 4.3c3.1 2.9 4 7.5 2.8 13.9L151 87.1h-14.8l5.8-29.9c.7-3.4.4-5.7-.7-6.9c-1.1-1.2-3.6-1.9-7.3-1.9h-11.7l-7.5 38.7h-14.6l13.1-67.5zm76.2 28.6c5.6 0 9.3 1 11.2 3.1c1.9 2.1 2.3 5.6 1.3 10.6c-1 5.2-3 9-5.9 11.2c-2.9 2.2-7.3 3.3-13.2 3.3H174l5.5-28.2h10zM153.7 105h14.7l3.5-17.9h12.6c5.6 0 10.1-.6 13.7-1.8c3.6-1.2 6.8-3.1 9.8-5.9c2.5-2.3 4.5-4.8 6-7.5s2.6-5.7 3.2-9c1.6-8 .4-14.2-3.5-18.7s-10.1-6.7-18.6-6.7h-28.3L153.7 105z"/></svg>',
+          desc: 'PHP',
+          checked: false,
+        },
+        {
+          id: 5,
+          desc: 'Python',
+          img: '<svg  viewBox="0 0 256 255"><defs><linearGradient id="logosPython0" x1="12.959%" x2="79.639%" y1="12.039%" y2="78.201%"><stop offset="0%" stop-color="#387EB8"/><stop offset="100%" stop-color="#366994"/></linearGradient><linearGradient id="logosPython1" x1="19.128%" x2="90.742%" y1="20.579%" y2="88.429%"><stop offset="0%" stop-color="#FFE052"/><stop offset="100%" stop-color="#FFC331"/></linearGradient></defs><path fill="url(#logosPython0)" d="M126.916.072c-64.832 0-60.784 28.115-60.784 28.115l.072 29.128h61.868v8.745H41.631S.145 61.355.145 126.77c0 65.417 36.21 63.097 36.21 63.097h21.61v-30.356s-1.165-36.21 35.632-36.21h61.362s34.475.557 34.475-33.319V33.97S194.67.072 126.916.072ZM92.802 19.66a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.13Z"/><path fill="url(#logosPython1)" d="M128.757 254.126c64.832 0 60.784-28.115 60.784-28.115l-.072-29.127H127.6v-8.745h86.441s41.486 4.705 41.486-60.712c0-65.416-36.21-63.096-36.21-63.096h-21.61v30.355s1.165 36.21-35.632 36.21h-61.362s-34.475-.557-34.475 33.32v56.013s-5.235 33.897 62.518 33.897Zm34.114-19.586a11.12 11.12 0 0 1-11.13-11.13a11.12 11.12 0 0 1 11.13-11.131a11.12 11.12 0 0 1 11.13 11.13a11.12 11.12 0 0 1-11.13 11.13Z"/></svg>',
+          checked: false,
+        },
+
+
+        {
+          id: 10,
+          desc: 'React',
+          img: '<svg  viewBox="0 0 128 128"><g fill="#61DAFB"><circle cx="64" cy="64" r="11.4"/><path d="M107.3 45.2c-2.2-.8-4.5-1.6-6.9-2.3c.6-2.4 1.1-4.8 1.5-7.1c2.1-13.2-.2-22.5-6.6-26.1c-1.9-1.1-4-1.6-6.4-1.6c-7 0-15.9 5.2-24.9 13.9c-9-8.7-17.9-13.9-24.9-13.9c-2.4 0-4.5.5-6.4 1.6c-6.4 3.7-8.7 13-6.6 26.1c.4 2.3.9 4.7 1.5 7.1c-2.4.7-4.7 1.4-6.9 2.3C8.2 50 1.4 56.6 1.4 64s6.9 14 19.3 18.8c2.2.8 4.5 1.6 6.9 2.3c-.6 2.4-1.1 4.8-1.5 7.1c-2.1 13.2.2 22.5 6.6 26.1c1.9 1.1 4 1.6 6.4 1.6c7.1 0 16-5.2 24.9-13.9c9 8.7 17.9 13.9 24.9 13.9c2.4 0 4.5-.5 6.4-1.6c6.4-3.7 8.7-13 6.6-26.1c-.4-2.3-.9-4.7-1.5-7.1c2.4-.7 4.7-1.4 6.9-2.3c12.5-4.8 19.3-11.4 19.3-18.8s-6.8-14-19.3-18.8zM92.5 14.7c4.1 2.4 5.5 9.8 3.8 20.3c-.3 2.1-.8 4.3-1.4 6.6c-5.2-1.2-10.7-2-16.5-2.5c-3.4-4.8-6.9-9.1-10.4-13c7.4-7.3 14.9-12.3 21-12.3c1.3 0 2.5.3 3.5.9zM81.3 74c-1.8 3.2-3.9 6.4-6.1 9.6c-3.7.3-7.4.4-11.2.4c-3.9 0-7.6-.1-11.2-.4c-2.2-3.2-4.2-6.4-6-9.6c-1.9-3.3-3.7-6.7-5.3-10c1.6-3.3 3.4-6.7 5.3-10c1.8-3.2 3.9-6.4 6.1-9.6c3.7-.3 7.4-.4 11.2-.4c3.9 0 7.6.1 11.2.4c2.2 3.2 4.2 6.4 6 9.6c1.9 3.3 3.7 6.7 5.3 10c-1.7 3.3-3.4 6.6-5.3 10zm8.3-3.3c1.5 3.5 2.7 6.9 3.8 10.3c-3.4.8-7 1.4-10.8 1.9c1.2-1.9 2.5-3.9 3.6-6c1.2-2.1 2.3-4.2 3.4-6.2zM64 97.8c-2.4-2.6-4.7-5.4-6.9-8.3c2.3.1 4.6.2 6.9.2c2.3 0 4.6-.1 6.9-.2c-2.2 2.9-4.5 5.7-6.9 8.3zm-18.6-15c-3.8-.5-7.4-1.1-10.8-1.9c1.1-3.3 2.3-6.8 3.8-10.3c1.1 2 2.2 4.1 3.4 6.1c1.2 2.2 2.4 4.1 3.6 6.1zm-7-25.5c-1.5-3.5-2.7-6.9-3.8-10.3c3.4-.8 7-1.4 10.8-1.9c-1.2 1.9-2.5 3.9-3.6 6c-1.2 2.1-2.3 4.2-3.4 6.2zM64 30.2c2.4 2.6 4.7 5.4 6.9 8.3c-2.3-.1-4.6-.2-6.9-.2c-2.3 0-4.6.1-6.9.2c2.2-2.9 4.5-5.7 6.9-8.3zm22.2 21l-3.6-6c3.8.5 7.4 1.1 10.8 1.9c-1.1 3.3-2.3 6.8-3.8 10.3c-1.1-2.1-2.2-4.2-3.4-6.2zM31.7 35c-1.7-10.5-.3-17.9 3.8-20.3c1-.6 2.2-.9 3.5-.9c6 0 13.5 4.9 21 12.3c-3.5 3.8-7 8.2-10.4 13c-5.8.5-11.3 1.4-16.5 2.5c-.6-2.3-1-4.5-1.4-6.6zM7 64c0-4.7 5.7-9.7 15.7-13.4c2-.8 4.2-1.5 6.4-2.1c1.6 5 3.6 10.3 6 15.6c-2.4 5.3-4.5 10.5-6 15.5C15.3 75.6 7 69.6 7 64zm28.5 49.3c-4.1-2.4-5.5-9.8-3.8-20.3c.3-2.1.8-4.3 1.4-6.6c5.2 1.2 10.7 2 16.5 2.5c3.4 4.8 6.9 9.1 10.4 13c-7.4 7.3-14.9 12.3-21 12.3c-1.3 0-2.5-.3-3.5-.9zM96.3 93c1.7 10.5.3 17.9-3.8 20.3c-1 .6-2.2.9-3.5.9c-6 0-13.5-4.9-21-12.3c3.5-3.8 7-8.2 10.4-13c5.8-.5 11.3-1.4 16.5-2.5c.6 2.3 1 4.5 1.4 6.6zm9-15.6c-2 .8-4.2 1.5-6.4 2.1c-1.6-5-3.6-10.3-6-15.6c2.4-5.3 4.5-10.5 6-15.5c13.8 4 22.1 10 22.1 15.6c0 4.7-5.8 9.7-15.7 13.4z"/></g></svg>',
+          checked: false,
+        },
+        {
+          id: 11,
+          desc: 'Vue',
+          img: '<svg  viewBox="0 0 32 32"><path fill="#41b883" d="M24.4 3.925H30l-14 24.15L2 3.925h10.71l3.29 5.6l3.22-5.6Z"/><path fill="#41b883" d="m2 3.925l14 24.15l14-24.15h-5.6L16 18.415L7.53 3.925Z"/><path fill="#35495e" d="M7.53 3.925L16 18.485l8.4-14.56h-5.18L16 9.525l-3.29-5.6Z"/></svg>',
+          checked: false,
+        },
+        {
+          id: 12,
+          desc: 'Angular',
+          img: '<svg  viewBox="0 0 256 272"><path fill="#E23237" d="M.1 45.522L125.908.697l129.196 44.028l-20.919 166.45l-108.277 59.966l-106.583-59.169L.1 45.522Z"/><path fill="#B52E31" d="M255.104 44.725L125.908.697v270.444l108.277-59.866l20.919-166.55Z"/><path fill="#FFF" d="M126.107 32.274L47.714 206.693l29.285-.498l15.739-39.347h70.325l17.233 39.845l27.99.498l-82.179-174.917Zm.2 55.882l26.496 55.383h-49.806l23.31-55.383Z"/></svg>',
+          checked: false,
+        },
+      ]
+
+      // selectors
+      const tplInterest = document.querySelector("#tpl-interest");
+      const listInterests = document.querySelector("#list-interests");
+
+      interests.forEach(({ id, desc, img, checked }) => {
+        const clone = tplInterest.content.cloneNode(true);
+        clone.querySelector("h3").innerText = desc;
+        clone.querySelector(".img").innerHTML = img;
+        clone.querySelector("label").setAttribute("for", `item-${id}`)
+        clone.querySelector("input").setAttribute("id", `item-${id}`);
+
+        listInterests.append(clone);
+      })
+
+    </script>
+
+  </body>
+
+  </html>
 
   <script>
-    const missedcall = document.querySelector('#missedcall');
-    missedcall.addEventListener('click', () => {
-      missedcall.classList.toggle('active');
-    })
+    let left = 0;
+    const button = document.querySelector('button');
+    debugger;
+    setInterval(() => {
+      button.style.setProperty('--currentleft', left);
+      left += 6;
+    }, 50);   
   </script>
 </body>
 
