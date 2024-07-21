@@ -4,9 +4,9 @@ interface Props{
     className?: string;
 }
 
-export default function Loading({ className }){
+export const Loading: React.FC<Props> = ({ className }) => {
     return (
-        <div className={twMerge(`min-h-[140px] text-zinc-300 items-center justify-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible`,
+        <div className={twMerge(`fixed min-h-[140px] text-zinc-300 items-center justify-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible`,
             className
         )}>
             <svg className="w-12 h-12 animate-spin" viewBox="0 0 64 64" fill="none"

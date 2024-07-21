@@ -9,21 +9,21 @@ interface TabButtonProps{
     onClick: () => void;
 }
 const TabButton: React.FC<TabButtonProps> = ({title, isActive, onClick}) => (
-    <button className={twMerge('btn-primary ', 
+    <button className={twMerge('btn-primary !p-2', 
         isActive && 'active'
     )} onClick={onClick}>{title}
     </button>
 )
 
 interface TabContentProps{
-    content: string;
+    content: React.ReactNode;
     isActive: boolean;
 }
 
 const TabContent: React.FC<TabContentProps> = ({ content, isActive }) => (
-    <div className={twMerge(' [grid-area:stack] transition-all duration-300',
+    <div className={twMerge(' [grid-area:stack] transition-all duration-300 space-y-2 leading-6 text-sm',
         isActive ? 'translate-y-0' : 'translate-y-[1000px]'
-    )} dangerouslySetInnerHTML={{ __html: content }}></div>
+    )}>{content}</div>
 )
 
 interface Props{

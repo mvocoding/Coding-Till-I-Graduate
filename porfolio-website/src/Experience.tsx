@@ -1,16 +1,16 @@
 import Modal from "./Modal";
 import { VerticalProgressBar } from "./VerticalProgressBar";
-import { educationDetails } from "./data";
+import { experiences } from "./data";
 
 
 
-export default function Education() {
-   
+export default function Experience() {
+
     return (
         <Modal>
             <Modal.Header></Modal.Header>
             <Modal.Body>
-                <VerticalProgressBar items={educationDetails}></VerticalProgressBar>
+                <VerticalProgressBar items={experiences}></VerticalProgressBar>
             </Modal.Body>
         </Modal>
 
