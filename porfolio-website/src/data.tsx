@@ -51,9 +51,9 @@ export const modalsList: Record<string, ModalItem> = {
     },
     'liveprojects': {
         name: 'liveprojects',
-        shortcut: 'Live Projects',
+        shortcut: 'Daily Coding',
         show: true,
-        text: 'Live Projects',
+        text: 'Daily Coding',
         img: 'public/images/folder-icon.png',
         component: <LiveProjects /> 
     },
@@ -77,7 +77,16 @@ export const personalDetails: Record<string, string> = {
     fullname: 'Minh Quoc Vo',
     title: 'Web Developer',
     avatar: 'images/avatar.png',
-    subtitle: 'Software Engineer / Full Stack Developer -.NET, Python, Javascript, React',
+    aboutme: `Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core.
+    Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.
+    I am actively seeking an internship where I can apply my previous experience and current learning to contribute to impactful projects. You can explore my ongoing projects and daily coding activities to get a sense of my work and commitment.
+    `,
+    hobbies: `I love hiking and exploring nature, it helps me stay active and feel refreshed. 
+    I also enjoy learning about new technologies and trying out new tools and frameworks.
+    Coding challenges and hackathons are fun for me because they improve my problem-solving skills and keep me involved in the coding community. 
+    Additionally, I like reading tech blogs to keep up with the latest trends and best practices.
+    `,
+    subtitle: 'Software Engineer / Full Stack Developer -.NET, Javascript, React',
     location: 'Adelaide, South Australia',
     github: 'https://github.com/MaxvoDev',
     linkedin: 'https://www.linkedin.com/in/max-vo/',
@@ -95,7 +104,6 @@ export const projectList: ProjectItem[] = [
             description: `As part of my Master of IT program in Adelaide, I led a four-person team in developing a fully operational E-commerce website using .NET Core, Entity Framework, React, and Redux. 
             
             This project enhanced my understanding of these technologies and allowed me to refine my skills in configuring development environments, creating APIs with .NET WebAPI, and managing application state using Redux.
-
             `,
             images: ['public/images/restore.png'],
             git: 'https://github.com/MaxvoDev/Restore-Build-an-E-commerce-Store-with-Dotnet-React-Redux'

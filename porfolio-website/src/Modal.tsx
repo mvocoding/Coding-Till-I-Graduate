@@ -29,10 +29,10 @@ const Modal: React.FC<ModalProps> & {
 
     return (
         <>
-            <Loading className={!isMounted ? 'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' : 'hidden'}></Loading>
+            <Loading className={!isMounted ? ' fixed ' : 'hidden'}></Loading>
             <div className={twMerge(`[grid-area:modal] z-[1000] *:transition-all *:duration-300
              duration-500 transition-all grid grid-rows-[auto_1fr] text-base
-            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  p-5 sm:p-10  shadow-lg w-full`,
+            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  px-5 pt-10 pb-5 sm:p-10  shadow-lg w-full`,
                 className,
                 isMounted ? 'h-[90vh] visible' : 'h-0 invisible'
             )}>

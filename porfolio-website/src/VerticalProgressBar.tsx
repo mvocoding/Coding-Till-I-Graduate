@@ -9,15 +9,6 @@ interface Props {
     items: ProgressItem[];    
 }
 
-function replaceNewlinesWithBreaks(text: string) {
-    return text.split('\n').map((line, index) => (
-      <React.Fragment key={index}>
-        {line}
-        <br />
-      </React.Fragment>
-    ));
-  }
-  
 export const VerticalProgressBar: React.FC<Props> = ({ className, items }) => {
     const [animation, setAnimation] = useState(false);
 
@@ -32,7 +23,7 @@ export const VerticalProgressBar: React.FC<Props> = ({ className, items }) => {
             animation ? `active translate-y-0 *:opacity-100 sm:before:*:scale-100 sm:*:[box-shadow:inset_4px_0_0_0_var(--line)] sm:before:*:content-[--content]` : ' translate-y-[1000px]'
         )}>
             {items!.map((item, index) => (
-                <div className={`
+                <div key={index} className={`
                     grid grid-cols-[0_1fr] sm:grid-cols-[50px_1fr]
                     gap-x-5 text-sm 
                     relative sm:pl-10 sm:pb-10  [box-shadow:inset_0_0_0_0_transparent]  duration-[1000ms] transition-all 
