@@ -28,9 +28,8 @@ export const TagList: React.FC<Props> = ({ className, type = 'text', tagsList })
                         <div key={index} className="flex flex-col items-center gap-y-1 font-semibold">
                             <div className={`
                     hover:bg-gray-500/20
-                    w-20 flex items-center aspect-square text-center  rounded-full border
+                    w-full max-w-8 sm:max-w-12 flex items-center aspect-square text-center  rounded-full border
                     border-white/30
-                    px-4
                     transition-all
                     duration-300
                     cursor-pointer`}>

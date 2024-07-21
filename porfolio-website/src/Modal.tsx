@@ -32,7 +32,7 @@ const Modal: React.FC<ModalProps> & {
             <Loading className={!isMounted ? 'flex' : 'hidden'}></Loading>
             <div className={twMerge(`z-[1000] *:transition-all *:duration-300
              duration-500 transition-all grid grid-rows-[auto_1fr] text-base
-            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  p-6 sm:p-10  shadow-lg fixed w-full  sm:w-[70%]`,
+            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  p-5 sm:p-10  shadow-lg fixed w-full  sm:w-[70%]`,
                 className,
                 isMounted ? 'h-[100vh] visible' : 'h-0 invisible'
             )}>
@@ -61,7 +61,7 @@ const Header: React.FC<SubModalProps> = ({ className, children }) => {
             {
                 children ? children : (
                     <>
-                        <img src="https://media.licdn.com/dms/image/D4D03AQHUacwchKIDoQ/profile-displayphoto-shrink_800_800/0/1706355356084?e=1726704000&v=beta&t=vezKKjgZIoap3mCn51ZyBm58vambE8sjjGCwieVP9mw" alt="Avatar" className="size-[100px] rounded-full hidden sm:block" />
+                        <img src={personalDetails.avatar} alt="Avatar" className="size-[100px] rounded-full max-md:hidden " />
                         <div className="space-y-1 flex-1">
                             <div className="w-full flex justify-between  font-medium text-xl tracking-wider">
                                 <h1>{ personalDetails.fullname}</h1>
@@ -82,9 +82,9 @@ const Header: React.FC<SubModalProps> = ({ className, children }) => {
                         focus-visible:before:*:translate-x-0 
                         space-x-1
                     `}>
-                                <button type="button" onClick={() => window.open(personalDetails.linkedin, '_blank')} className="max-sm:px-4 btn-primary "><FaLinkedin className="text-xl"/>
+                                <button type="button" onClick={() => window.open(personalDetails.linkedin, '_blank')} className="max-sm:px-4 gap-x-2 btn-primary "><FaLinkedin className="text-xl"/>
                                     LinkedIn</button>
-                                <button type="button" onClick={() => window.open(personalDetails.github, '_blank')} className="max-sm:px-4 btn-primary "><FaGithub className="text-xl"/>
+                                <button type="button" onClick={() => window.open(personalDetails.github, '_blank')} className="max-sm:px-4 gap-x-2 btn-primary "><FaGithub className="text-xl"/>
                                     Github</button>
                                 <button type="button" onClick={() => window.open(personalDetails.icodethis, '_blank')} className="max-sm:hidden btn-primary ">
                                     <img className="w-20 py-1" src="images/icodethis.svg" alt="ICodeThis" />

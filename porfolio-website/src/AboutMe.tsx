@@ -17,7 +17,7 @@ export default function AboutMe() {
                 <>
                     <p>Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core.</p>
                     <p>Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.</p>
-                    <button className="mx-auto btn-primary w-full sm:w-[50%] mt-5" 
+                    <button className="mx-auto btn-primary !w-full sm:w-[50%] mt-5" 
                     onClick={() => openModal('experience')}>Browse My Experience</button>
                 </>,
         },
@@ -25,7 +25,7 @@ export default function AboutMe() {
             title: 'Tech Stack',
             content:
                 <div className="space-y-5">
-                    <TagList className="grid grid-cols-6 gap-y-3 " type="image" tagsList={[
+                    <TagList className="grid grid-cols-3 sm:grid-cols-4 gap-y-3" type="image" tagsList={[
                         {
                             text: 'HTML',
                             image: 'images/html.svg'
@@ -64,7 +64,7 @@ export default function AboutMe() {
                         // }
                     ]}></TagList>
                     <button 
-                    className="mx-auto btn-primary w-[50%] mt-10" onClick={() => openModal('sideprojects')}>See My Work</button>
+                    className="mx-auto btn-primary w-full sm:w-[50%] mt-10" onClick={() => openModal('sideprojects')}>See My Work</button>
                 </div>,
         },
         {

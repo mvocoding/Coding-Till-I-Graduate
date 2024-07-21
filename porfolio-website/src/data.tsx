@@ -62,6 +62,7 @@ export const modalsList: Record<string, ModalItem> = {
 export const personalDetails: Record<string, string> = {
     fullname: 'Minh Quoc Vo',
     title: 'Web Developer',
+    avatar: 'images/avatar.png',
     subtitle: 'Software Engineer / Full Stack Developer -.NET, Python, Javascript, React',
     location: 'Adelaide, South Australia',
     github: 'https://github.com/MaxvoDev',

@@ -27,13 +27,13 @@ export const VerticalProgressBar: React.FC<Props> = ({ className, items }) => {
 
     
     return (
-        <div className={twMerge(`bg-black/40 p-5 max-sm:gap-y-10 sm:p-10 grid [grid-auto-columns:1fr]  items-center text-base transition-all duration-300 [--circle:#22C55E] [--line:#22C55E]  [--content:'✓']`,
+        <div className={twMerge(`bg-black/40 p-5 max-sm:gap-y-5 sm:p-10 grid [grid-auto-columns:1fr]  items-center text-base transition-all duration-300 [--circle:#22C55E] [--line:#22C55E]  [--content:'✓']`,
             className,
             animation ? `active translate-y-0 *:opacity-100 sm:before:*:scale-100 sm:*:[box-shadow:inset_4px_0_0_0_var(--line)] sm:before:*:content-[--content]` : ' translate-y-[1000px]'
         )}>
             {items!.map((item, index) => (
                 <div className={`
-                    grid grid-cols-[50px_1fr]
+                    grid grid-cols-[0_1fr] sm:grid-cols-[50px_1fr]
                     gap-x-5 text-sm 
                     relative sm:pl-10 sm:pb-10  [box-shadow:inset_0_0_0_0_transparent]  duration-[1000ms] transition-all 
     

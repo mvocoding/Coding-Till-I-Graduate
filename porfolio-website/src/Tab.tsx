@@ -3,19 +3,19 @@ import { twMerge } from "tailwind-merge";
 import { TabItem } from "./model";
 
 
-interface TabButtonProps{
+interface TabButtonProps {
     title: string;
     isActive: boolean;
     onClick: () => void;
 }
-const TabButton: React.FC<TabButtonProps> = ({title, isActive, onClick}) => (
-    <button className={twMerge('btn-primary !p-2', 
+const TabButton: React.FC<TabButtonProps> = ({ title, isActive, onClick }) => (
+    <button className={twMerge('btn-primary !p-2',
         isActive && 'active'
     )} onClick={onClick}>{title}
     </button>
 )
 
-interface TabContentProps{
+interface TabContentProps {
     content: React.ReactNode;
     isActive: boolean;
 }
@@ -26,13 +26,16 @@ const TabContent: React.FC<TabContentProps> = ({ content, isActive }) => (
     )}>{content}</div>
 )
 
-interface Props{
+interface Props {
     tabsList: TabItem[];
+    className?: string;
 }
-export const Tab: React.FC<Props> = ({ tabsList }) => {
+export const Tab: React.FC<Props> = ({ tabsList, className }) => {
     const [activeTab, setActiveTab] = useState(0);
     return (
-        <div className="grid grid-rows-[auto_1fr] h-full overflow-hidden">
+        <div className={twMerge(`grid grid-rows-[auto_1fr] h-full overflow-hidden`,
+            className
+        )}>
             <div className={`grid grid-cols-3
                     *:border-b-0 *:
                 `}>
