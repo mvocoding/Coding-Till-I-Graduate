@@ -88,7 +88,7 @@ export const personalDetails: Record<string, string> = {
     `,
     subtitle: 'Software Engineer / Full Stack Developer -.NET, Javascript, React',
     location: 'Adelaide, South Australia',
-    github: 'https://github.com/MaxvoDev',
+    github: 'https://github.com/mvocoding',
     linkedin: 'https://www.linkedin.com/in/max-vo/',
     icodethis: 'https://icodethis.com/maxvo_dev'
 }
