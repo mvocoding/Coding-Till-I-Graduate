@@ -10,18 +10,19 @@ interface Props {
 export const TagList: React.FC<Props> = ({ className, type = 'text', tagsList }) => {
     return (
         <div className={twMerge(`text-sm
-                    flex gap-x-1`,
+                    flex flex-wrap gap-1`,
             className
         )}>
             {type === 'text' ? (
                 tagsList.map((tag, index) => (
-                    <span className={`border
+                    <span key={index} className={`
+                    border
                     border-white/30
                     py-1
                     px-4
                     transition-all
                     duration-300
-                    cursor-pointer`} key={index}>{tag.text}</span>
+                    cursor-pointer`}>{tag.text}</span>
                 ))) :
                 (
                     tagsList.map((tag, index) => (

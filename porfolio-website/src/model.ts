@@ -3,6 +3,8 @@ export interface ModalItem {
     text: string;
     img: string;
     component: React.ReactNode;
+    show: boolean;
+    shortcut?: string;
 }
 
 export interface TabItem{

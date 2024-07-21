@@ -12,19 +12,22 @@ export default function AboutMe() {
 
     const tabsList: TabItem[] = [
         {
-            title: 'About Me',
+        title: 'About Me',
             content:
-                <>
-                    <p>Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core.</p>
-                    <p>Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.</p>
-                    <button className="mx-auto btn-primary !w-full sm:w-[50%] mt-5" 
-                    onClick={() => openModal('experience')}>Browse My Experience</button>
-                </>,
+                <div className="flex flex-col h-full">
+                    <div className="space-y-2">
+                        <p>Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core.</p>
+                        <p>Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.</p>
+                    </div>
+                    <button className="mt-auto btn-primary"
+                        onClick={() => openModal('experience')}>Browse My Experience</button>
+                </div>,
         },
         {
             title: 'Tech Stack',
             content:
-                <div className="space-y-5">
+                <div className="space-y-5 flex flex-col h-full">
+                    <div>
                     <TagList className="grid grid-cols-3 sm:grid-cols-4 gap-y-3" type="image" tagsList={[
                         {
                             text: 'HTML',
@@ -63,25 +66,27 @@ export default function AboutMe() {
                         //     image: 'images/aws.svg'
                         // }
                     ]}></TagList>
-                    <button 
-                    className="mx-auto btn-primary w-full sm:w-[50%] mt-10" onClick={() => openModal('sideprojects')}>See My Work</button>
+                    </div>
+                    <button
+                        className=" btn-primary !mt-10" onClick={() => openModal('sideprojects')}>See My Work</button>
                 </div>,
         },
         {
             title: 'Hobbies',
-            content: <>
-                <p>Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core. </p>
-                <p>Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.</p>
-
-                <button 
-                    className="mx-auto btn-primary w-full sm:w-[50%] mt-10" onClick={() => openModal('liveprojects')}>Daily Coding Journey</button>
-            </>
+            content: <div className="flex flex-col h-full">
+                <div className="space-y-2">
+                    <p>Hi, my name is Max Vo, currently residing in Adelaide, South Australia. I have a strong passion for web development technologies and specialize in software development frameworks such as React, ASP .NET Core. </p>
+                    <p>Originally from Vietnam, I have accumulated over 3 years of experience as a Software Developer. Since arriving in Australia, I am eager to resume my career in software development. I have completed my Computer Science degree and am set to finish my Master's degree in November 2025.</p>
+                </div>
+                <button
+                    className="mt-auto btn-primary" onClick={() => openModal('liveprojects')}>Daily Coding Journey</button>
+            </div>
         },
-    
+
     ];
 
     return (
-        <Modal>
+        <Modal className="flex flex-col mx-auto w-full sm:w-[80%]">
             <Modal.Header className="flex gap-3"></Modal.Header>
             <Modal.Body>
                 <Tab tabsList={tabsList}></Tab>

@@ -2,11 +2,10 @@ import Modal from "./Modal";
 
 export default function MyCV() {
     return (
-        <Modal>
+        <Modal className="flex flex-col mx-auto w-full sm:w-[80%]">
             <Modal.Header></Modal.Header>
             <Modal.Body>
-                <iframe src="https://research.google.com/pubs/archive/44678.pdf"
-                    className="w-full min-h-[80vh] "></iframe>
+                
             </Modal.Body>
         </Modal>
     )

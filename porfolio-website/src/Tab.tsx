@@ -36,7 +36,7 @@ export const Tab: React.FC<Props> = ({ tabsList, className }) => {
         <div className={twMerge(`grid grid-rows-[auto_1fr] h-full overflow-hidden`,
             className
         )}>
-            <div className={`grid grid-cols-3
+            <div className={`grid grid-cols-${tabsList.length}
                     *:border-b-0 *:
                 `}>
                 {tabsList.map((tab, index) => (

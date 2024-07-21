@@ -19,16 +19,17 @@ function App() {
   }, [theme]);
   return (
     <div className={`
+      grid max-sm:grid-rows-[1fr_10%] max-sm:[grid-template-areas:'modal'_'icons']
+      sm:grid-cols-[10%_1fr_10%] sm:[grid-template-areas:'icons_modal_settings']
       relative
-      flex items-center justify-center 
       !text-lg w-full min-h-screen
       `}>
-      <Sidebar className={`absolute left-0 top-0`}>
+      <Sidebar className={`[grid-area:icons]`}>
       </Sidebar>
 
       {currentModal && (modalsList[currentModal].component)}
       
-      <ThemeSwitcher className={`absolute top-2 right-2`} />
+      <ThemeSwitcher className={`[grid-area:settings]`} />
     </div>
   )
 }

@@ -47,12 +47,12 @@ export const LiveProjects = ({ }) => {
         fetchData();
     }, []); 
 
-    if (loading) return <Loading />
-
+    if(loading) return <Loading></Loading>
+    
     return (
         <Modal>
             <Modal.Header className="flex gap-3">
-                <h2>Live Projects</h2>
+                <h2 className="text-center text-2xl text-[#0f0]">Live Projects</h2>
             </Modal.Header>
             <Modal.Body className="grid grid-cols-3 gap-3 ">
                 {submissionData?.map((submission, index) => (

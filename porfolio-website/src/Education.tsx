@@ -7,7 +7,7 @@ import { educationDetails } from "./data";
 export default function Education() {
    
     return (
-        <Modal>
+        <Modal className="flex flex-col mx-auto w-full">
             <Modal.Header></Modal.Header>
             <Modal.Body>
                 <VerticalProgressBar items={educationDetails}></VerticalProgressBar>

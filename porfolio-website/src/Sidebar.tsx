@@ -12,21 +12,20 @@ const Sidebar: React.FC<Props> = ({
   const { openModal } = useModal();
 
   return (
-    <div className={twMerge(className)}>
+    <div className={twMerge(`flex items-center max-sm:justify-center`, className)}>
       <nav className={`
-        flex sm:flex-col p-2 items-center w-full rounded-xl gap-3
-        text-base  *:flex-col  *:w-[120px]
+        flex sm:flex-col  items-center justify-center rounded-xl gap-2
+        text-base  
          before:*:inset-[-100%_-100%_100%_100%] 
         hover:before:*:inset-0
-
-        [&_img]:max-w-[50px]
+        *:w-[50px] sm:*:w-[85px] *:aspect-square
         `}>
 
         {
-          Object.values(modalsList).map((modal, index) => (
-            <button key={index} className={`btn-primary`} onClick={() => openModal(`${modal.name}`)}>
-              <img src={modal.img} />
-              {modal.text}
+          Object.values(modalsList).filter(modal => modal.show).map((modal, index) => (
+            <button key={index} className={`whitespace-nowrap btn-primary !p-0 flex-col`} onClick={() => openModal(`${modal.name}`)}>
+              <img src={modal.img} className="max-w-[50px] object-cover object-center "/>
+              <span className="max-sm:hidden">{modal.shortcut}</span>
             </button>
           ))
         }

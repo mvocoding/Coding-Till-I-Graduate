@@ -11,7 +11,7 @@ const ThemeSwitcher: React.FC<Props> = ({ className }) => {
     const [showTheme, setShowTheme] = useState(false);
 
     return (
-        <div className={twMerge(`relative flex items-center justify-center`, className)}>
+        <div className={twMerge(`absolute top-0 right-0 flex `, className)}>
             <button 
             onClick={() => setShowTheme((prev) => !prev)}
             className="mb-1 btn-primary !size-10 !rounded-full  !p-0 text-5xl material-symbols-outlined">

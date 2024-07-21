@@ -13,7 +13,7 @@ export const ProjectDetail: React.FC<Props> = () => {
     return (
         <Modal>
             <Modal.Header>
-                <h2 className="text-center text-xl text-[#0f0]">{project.name}</h2>
+                <h2 className="text-center text-2xl text-[#0f0]">{project.name}</h2>
             </Modal.Header>
             <Modal.Body className="text-sm p-5 bg-black/40 ring-8 ring-black/5 border border-zinc-700/30 space-y-3">
                 <div className="hover:cursor-pointer">

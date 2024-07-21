@@ -11,48 +11,62 @@ import { ProjectDetail } from "./ProjectDetail";
 export const modalsList: Record<string, ModalItem> = {
     'aboutme': {
         name: 'aboutme',
+        shortcut: 'Home',
+        show: true,
         text: 'About Me',
         img: 'public/images/start-icon.png',
         component: <AboutMe />
     },
     'mycv': {
         name: 'mycv',
+        shortcut: 'My CV',
         text: 'My CV',
+        show: true,
         img: 'public/images/cv.png',
         component: <MyCV />
     },
     'experience': {
         name: 'experience',
+        shortcut: 'Experience',
+        show: true,
         text: 'Experience',
         img: 'public/images/about-icon.png',
         component: <Experience />
     },
     'education': {
         name: 'education',
+        shortcut: 'Education',
+        show: true,
         text: 'Education',
         img: 'public/images/education.png',
         component: <Education />
     },
     'sideprojects': {
         name: 'sideprojects',
+        shortcut: 'Side Projects',
+        show: true,
         text: 'Side Projects',
         img: 'public/images/projects-icon.png',
         component: <Project />
     },
     'liveprojects': {
         name: 'liveprojects',
+        shortcut: 'Live Projects',
+        show: true,
         text: 'Live Projects',
         img: 'public/images/folder-icon.png',
         component: <LiveProjects /> 
     },
     'codepreview': {
         name: 'codepreview',
+        show: false,
         text: 'codepreview',
         img: 'public/images/projects-icon.png',
         component: <CodePreview />
     },
     'projectdetail': {
         name: 'projectdetail',
+        show: false,
         text: 'projectdetail',
         img: 'public/images/projects-icon.png',
         component: <ProjectDetail />

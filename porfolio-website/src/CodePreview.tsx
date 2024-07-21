@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useModal } from './ModalContext';
 import { useEffect, useState } from 'react';
 import { Loading } from './Loading';
+import { TagList } from './Tag';
+import { TabItem } from './model';
+import Tab from './Tab';
 
 interface SubmissionDetail {
   html: string;
@@ -21,43 +24,43 @@ export const CodePreview: React.FC<Props> = ({ className }) => {
   const [submissionDetail, setSubmissionDetail] = useState<SubmissionDetail | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-      const fetchData = async () => {
-          const config = {
-              method: 'get',
-              url: `https://corsproxy.io/?https%3A%2F%2Ficodethis.com%2Fapi%2Ftrpc%2FdesignToCode.getChallenge%2CdesignToCode.getCompletedSubmissionbyId%3Fbatch%3D1%26input%3D%257B%25220%2522%253A%257B%2522json%2522%253A%257B%2522id%2522%253A%2522152%2522%257D%257D%252C%25221%2522%253A%257B%2522json%2522%253A%257B%2522id%2522%253A%2522${params.id}%2522%257D%257D%257D`
-          };
 
-          try {
-              const response = await axios(config);
-              setSubmissionDetail({
-                  html: response.data[1].result.data.json.data.meta.html,
-                  css: response.data[1].result.data.json.data.meta.css,
-                  js: response.data[1].result.data.json.data.meta.js,
-              });
-          } catch (error) {
-              console.error('Error fetching data:', error);
-          } finally {
-              setLoading(false);
-          }
+  useEffect(() => {
+    const fetchData = async () => {
+      const config = {
+        method: 'get',
+        url: `https://corsproxy.io/?https%3A%2F%2Ficodethis.com%2Fapi%2Ftrpc%2FdesignToCode.getChallenge%2CdesignToCode.getCompletedSubmissionbyId%3Fbatch%3D1%26input%3D%257B%25220%2522%253A%257B%2522json%2522%253A%257B%2522id%2522%253A%2522152%2522%257D%257D%252C%25221%2522%253A%257B%2522json%2522%253A%257B%2522id%2522%253A%2522${params.id}%2522%257D%257D%257D`
       };
 
-      fetchData();
+      try {
+        const response = await axios(config);
+        setSubmissionDetail({
+          html: response.data[1].result.data.json.data.meta.html,
+          css: response.data[1].result.data.json.data.meta.css,
+          js: response.data[1].result.data.json.data.meta.js,
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [params!.id]);
 
-    if (!submissionDetail) return <Loading />
-    return (
-        <Modal className='!w-full min-h-screen'>
-            <Modal.Header>
-                <div></div>
-            </Modal.Header>
-            <Modal.Body className={`grid grid-cols-[40%_60%] [grid-template-areas:'html_preview'_'css_preview'_'js_preview']`}>
-                <Editor className='[grid-area:html]' theme='vs-dark' defaultLanguage="html" defaultValue={submissionDetail.html} />
-                <Editor className='[grid-area:css]' theme='vs-dark' defaultLanguage="css" defaultValue={submissionDetail.css}></Editor>
-                <Editor className='[grid-area:js]' theme='vs-dark' defaultLanguage="javascript" defaultValue={submissionDetail.js}></Editor>
-                <div className='[grid-area:preview]'>
-                    <iframe className='w-full h-full'
-                        srcDoc={`
+  if (!submissionDetail) return <Loading />
+  return (
+    <Modal className='!w-full min-h-screen'>
+      <Modal.Header>
+        <div></div>
+      </Modal.Header>
+      <Modal.Body className={``}>
+        <Tab tabsList={[
+          {
+            title: 'Preview',
+            content: <iframe className='w-full h-full'
+            srcDoc={`
 <style>
 /* scollbar width */
 ::-webkit-scrollbar {
@@ -93,8 +96,22 @@ ${submissionDetail.css}
 ${submissionDetail.html}
 <script>${submissionDetail.js}</script>
 `}></iframe>
-                </div>
-            </Modal.Body>
-        </Modal>
-    )
+
+          },
+          {
+            title: 'HTML',
+            content: <Editor className='[grid-area:html]' theme='vs-dark' defaultLanguage="html" defaultValue={submissionDetail.html} />
+          },
+          {
+            title: 'CSS',
+            content: <Editor className='[grid-area:html]' theme='vs-dark' defaultLanguage="html" defaultValue={submissionDetail.css} />
+          },
+          {
+            title: 'Javascript',
+            content: <Editor className='[grid-area:html]' theme='vs-dark' defaultLanguage="html" defaultValue={submissionDetail.js} />
+          }
+        ]}></Tab>
+      </Modal.Body>
+    </Modal>
+  )
 }

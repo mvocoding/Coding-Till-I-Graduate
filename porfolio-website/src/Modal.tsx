@@ -29,12 +29,12 @@ const Modal: React.FC<ModalProps> & {
 
     return (
         <>
-            <Loading className={!isMounted ? 'flex' : 'hidden'}></Loading>
-            <div className={twMerge(`z-[1000] *:transition-all *:duration-300
+            <Loading className={!isMounted ? 'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' : 'hidden'}></Loading>
+            <div className={twMerge(`[grid-area:modal] z-[1000] *:transition-all *:duration-300
              duration-500 transition-all grid grid-rows-[auto_1fr] text-base
-            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  p-5 sm:p-10  shadow-lg fixed w-full  sm:w-[70%]`,
+            bg-black/50 backdrop-blur-md border border-white/20 ring-8 ring-black/5 text-zinc-300 rounded-lg  p-5 sm:p-10  shadow-lg w-full`,
                 className,
-                isMounted ? 'h-[100vh] visible' : 'h-0 invisible'
+                isMounted ? 'h-[90vh] visible' : 'h-0 invisible'
             )}>
                 {params?.submodal && (<button onClick={goback}
                     className={`flex items-center absolute left-1 top-2 text-sm duration-100 transition-all hover:text-white`}>
