@@ -1,0 +1,180 @@
+<html>
+
+<head>
+    <title>Kanban</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        /* scollbar width */
+        ::-webkit-scrollbar { 
+            width: 7px ;
+        }
+
+        /* scollbar - Track */
+        ::-webkit-scrollbar-track {
+            background: #343E66;
+        }
+
+        /* scollbar - Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #67A8E9;
+            border-radius: 5px;
+        }
+
+        /* scollbar - Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #548dc7
+        }
+    </style>
+
+</head>
+
+<body class="
+    bg-gradient-to-br from-blue-800 to-fuchsia-950
+    min-h-screen w-full flex items-center justify-center
+    p-10 
+    before:inset-0
+    before:fixed
+    before:opacity-10
+    before:bg-cover
+    before:bg-center
+    before:bg-no-repeat
+    before:-z-10 
+    before:bg-[url(https://wallpapers.com/images/high/white-abstract-distorted-grid-lines-u9nhbnh4kx3tnyqj.webp)]
+    ">
+    <div class=" 
+    flex flex-col 
+    text-sm  text-gray-300  w-full max-w-lg  h-screen    bg-black/30 relative 
+    before:-z-10 
+        before:absolute
+        before:inset-[-10px_0_100%_0]
+        before:bg-gradient-to-r
+        before:from-fuchsia-600
+        before:to-blue-600
+        px-8 py-4 space-y-5 
+        ">
+        <h2 class="text-xl font-bold ">In Progress</h2>
+        <button class="py-2 rounded-md  text-lg hover:bg-blue-500 hover:text-white     ">+ Add New Card</button>
+
+        <div class="flex-1 flex flex-col gap-5 h-100%  overflow-auto   ">
+
+            <div class="
+            hover:bg-fuchsia-800   relative    
+            flex flex-col sm:flex-row justify-center max-sm:items-center 
+            p-5 sm:p-8  gap-5  rounded-lg cursor-pointer  w-full  bg-black/20 ">
+                <div class="w-12">
+                    <svg class="w-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <path fill="currentColor"
+                            d="M15.958.01C7.744.005.864 6.229.047 14.401h11.115V12a.8.8 0 0 1 .797-.797h8c.443 0 .797.359.797.802V20a.797.797 0 0 1-.797.797h-8a.797.797 0 0 1-.797-.797v-2.401H.047c.885 8.792 8.724 15.198 17.51 14.313c8.792-.88 15.198-8.724 14.313-17.51C31.052 6.23 24.172.011 15.959.011z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex-1 flex flex-col gap-2">
+                    <div class="flex justify-center max-sm:absolute max-sm:top-0 max-sm:w-full max-sm:left-0   ">
+                        <p class="px-4 py-1  text-white bg-red-500/80  rounded-md ">High</p>
+                        <p class="opacity-70 ml-auto">25 April 2024</p>
+                    </div>
+                    <h3 class="font-bold text-lg sm:whitespace-nowrap ">Prepare structural documentation</h3>
+                    <ul class="text-xs  flex flex-wrap  sm:flex-row *:w-fit    gap-2 
+                    *:px-2 *:py-1 *:rounded-md  *:bg-white *:text-black/90   ">
+                        <li>Development</li>
+                        <li>Architecture</li>
+                    </ul>
+                    <div class="opacity-70 flex flex-col sm:flex-row justify-between ">
+                        <p class=" flex items-center gap-1 "><span class="material-symbols-outlined">
+                                person
+                            </span> 3 People work on this</p>
+                        <div class="flex items-center gap-1 ">
+                            <span class="material-symbols-outlined">
+                                Forum
+                            </span>
+                            <p> 17 comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="
+            hover:bg-fuchsia-800   relative    
+            flex flex-col sm:flex-row justify-center max-sm:items-center 
+            p-5 sm:p-8  gap-5  rounded-lg cursor-pointer  w-full  bg-black/20 ">
+                <div class="w-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M11.936 17.952c0-.644.517-1.16 1.162-1.16s1.16.516 1.16 1.16a1.157 1.157 0 0 1-1.16 1.161a1.157 1.157 0 0 1-1.162-1.16m4.724 0c0-.645.517-1.162 1.161-1.162s1.161.517 1.161 1.161s-.517 1.161-1.16 1.161a1.157 1.157 0 0 1-1.162-1.16m-10.95 0c0-.645.517-1.162 1.161-1.162s1.16.517 1.16 1.161s-.516 1.161-1.16 1.161a1.157 1.157 0 0 1-1.161-1.16m-4.724 0c0-.645.517-1.162 1.161-1.162s1.161.517 1.161 1.161a1.157 1.157 0 0 1-1.161 1.161a1.157 1.157 0 0 1-1.16-1.16m9.55-2.052h-1.01v4.063h1.01zM3.3 19.964h1.01v-4.063H3.3v.326a2.1 2.1 0 0 0-1.2-.374c-1.162 0-2.1.938-2.1 2.1c0 1.168.938 2.099 2.1 2.099c.445 0 .858-.135 1.2-.374zm15.674 0h1.01v-4.063h-1.01v.326a2.1 2.1 0 0 0-1.2-.374c-1.162 0-2.1.938-2.1 2.1a2.09 2.09 0 0 0 2.1 2.099c.445 0 .858-.135 1.2-.374zm1.384-1.32c.032.82.732 1.4 1.9 1.4c.955 0 1.742-.414 1.742-1.328c0-.636-.358-1.01-1.185-1.17l-.644-.126c-.414-.08-.7-.16-.7-.406c0-.27.278-.39.628-.39c.51 0 .716.255.732.557h1.018c-.056-.795-.692-1.328-1.718-1.328c-1.057 0-1.686.58-1.686 1.336c0 .922.748 1.073 1.392 1.193l.533.095c.382.072.549.183.549.406c0 .199-.191.397-.645.397c-.66 0-.874-.342-.882-.636zM8.024 14.517v1.71a2.1 2.1 0 0 0-1.2-.374c-1.162 0-2.1.938-2.1 2.1c0 1.168.938 2.099 2.1 2.099c.444 0 .858-.135 1.2-.374v.286h1.01v-5.447zm6.226 0v1.71a2.1 2.1 0 0 0-1.2-.374c-1.161 0-2.1.938-2.1 2.1a2.09 2.09 0 0 0 2.1 2.099c.445 0 .858-.135 1.2-.374v.286h1.01v-5.447zm-11.626-1.2l.684 1.2h4.716l-1.869-3.229l-3.53 2.028zm7.913 2.21v-1.01h3.713l-3.96-6.855L6.751 9.69l2.776 4.827v1.01zm5.217-1.01h4.723L14.37 3.948l-3.531 2.036z" />
+                    </svg>
+                </div>
+                <div class="flex-1 flex flex-col gap-2">
+                    <div class="flex justify-center max-sm:absolute max-sm:top-0 max-sm:w-full max-sm:left-0   ">
+                        <p class="px-4 py-1  text-white bg-red-500/80  rounded-md ">High</p>
+                        <p class="opacity-70 ml-auto">25 April 2024</p>
+                    </div>
+                    <h3 class="font-bold text-lg sm:whitespace-nowrap ">New UI for Dashboard</h3>
+                    <ul class="text-xs  flex flex-wrap  sm:flex-row *:w-fit    gap-2 
+                    *:px-2 *:py-1 *:rounded-md  *:bg-white *:text-black/90   ">
+                        <li>Development</li>
+                        <li>Architecture</li>
+                    </ul>
+                    <div class="opacity-70 flex flex-col sm:flex-row justify-between ">
+                        <p class=" flex items-center gap-1 "><span class="material-symbols-outlined">
+                                person
+                            </span> 3 People work on this</p>
+                        <div class="flex items-center gap-1 ">
+                            <span class="material-symbols-outlined">
+                                Forum
+                            </span>
+                            <p> 17 comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="
+            hover:bg-fuchsia-800   relative    
+            flex flex-col sm:flex-row justify-center max-sm:items-center 
+            p-5 sm:p-8  gap-5  rounded-lg cursor-pointer  w-full  bg-black/20 ">
+                <div class="w-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12s12-5.373 12-12C23.996 5.374 18.626.004 12 0m0 22.88C5.991 22.88 1.12 18.009 1.12 12S5.991 1.12 12 1.12S22.88 5.991 22.88 12c-.006 6.006-4.874 10.874-10.88 10.88m4.954-18.374h-.821v4.108h-8.24V4.506h-.847a8.978 8.978 0 0 0 0 14.988h.846v-4.108h8.24v4.108h.822a8.978 8.978 0 0 0 0-14.988M6.747 17.876a7.86 7.86 0 0 1 0-11.752zm9.386-3.635h-8.24V9.734h8.24zm1.12 3.61V6.124a7.88 7.88 0 0 1 0 11.727" />
+                    </svg>
+                </div>
+                <div class="flex-1 flex flex-col gap-2">
+                    <div class="flex justify-center max-sm:absolute max-sm:top-0 max-sm:w-full max-sm:left-0   ">
+                        <p class="px-4 py-1  text-white bg-green-500/80  rounded-md ">Low</p>
+                        <p class="opacity-70 ml-auto">25 April 2024</p>
+                    </div>
+                    <h3 class="font-bold text-lg sm:whitespace-nowrap ">Initial Landing Page Content </h3>
+                    <ul class="text-xs  flex flex-wrap  sm:flex-row *:w-fit    gap-2 
+                    *:px-2 *:py-1 *:rounded-md  *:bg-white *:text-black/90   ">
+                        <li>Development</li>
+                        <li>Architecture</li>
+                    </ul>
+                    <div class="opacity-70 flex flex-col sm:flex-row justify-between ">
+                        <p class=" flex items-center gap-1 "><span class="material-symbols-outlined">
+                                person
+                            </span> 3 People work on this</p>
+                        <div class="flex items-center gap-1 ">
+                            <span class="material-symbols-outlined">
+                                Forum
+                            </span>
+                            <p> 17 comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
