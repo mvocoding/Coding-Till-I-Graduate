@@ -22,6 +22,11 @@ const defaultTags: TagItem[] = [
     }
 ]
 
+const baseUrl = 'https://corsproxy.io/?https://icodethis.com/api/trpc/user.getUserSubmissions,user.getUserBadges?batch=1&input=%7B%220%22%3A%7B%22json%22%3A%7B%22username%22%3A%22maxvo_dev%22%7D%7D%2C%221%22%3A%7B%22json%22%3A%7B%22username%22%3A%22maxvo_dev%22%7D%7D%7D';
+const timestamp = new Date().getTime();
+const urlWithTimestamp = `${baseUrl}&_=${timestamp}`;
+
+
 export const LiveProjects = ({ }) => {
     const { openModal } = useModal();
     const [loading, setLoading] = useState<boolean>(true);
@@ -31,7 +36,7 @@ export const LiveProjects = ({ }) => {
         const fetchData = async () => {
             const config = {
                 method: 'get',
-                url: 'https://corsproxy.io/?https%3A%2F%2Ficodethis.com%2Fapi%2Ftrpc%2Fuser.getUserSubmissions%2Cuser.getUserBadges%3Fbatch%3D1%26input%3D%257B%25220%2522%253A%257B%2522json%2522%253A%257B%2522username%2522%253A%2522user8ae4a486%2522%257D%257D%252C%25221%2522%253A%257B%2522json%2522%253A%257B%2522username%2522%253A%2522user8ae4a486%2522%257D%257D%257D',
+                url: urlWithTimestamp,
             };
 
             try {
@@ -54,7 +59,7 @@ export const LiveProjects = ({ }) => {
             <Modal.Header className="flex gap-3">
                 <h2 className="text-center text-xl text-[#0f0]">Live Projects</h2>
             </Modal.Header>
-            <Modal.Body className="grid grid-cols-3 gap-3 ">
+            <Modal.Body className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] [grid-auto-rows:1fr] gap-3 ">
                 {submissionData?.map((submission, index) => (
                     <div key={index}>
                         <section className="aspect-video relative overflow-hidden">

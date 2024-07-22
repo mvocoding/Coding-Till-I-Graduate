@@ -17,7 +17,6 @@ export default function AboutMe() {
                     </div>
                     <div className="mt-5 flex *:flex-1 justify-center gap-2">
                         <a href="Resume.pdf" download className="btn-primary">Download My Resume</a>
-                        <button onClick={() => openModal('sideprojects')} className="btn-primary">See My Work</button>
                         <button onClick={() => openModal('liveprojects')} className="btn-primary">Daily Coding Journey</button>
                     </div>
                 </div>,
@@ -25,7 +24,7 @@ export default function AboutMe() {
         {
             title: 'Tech Stack',
             content:
-                <div className="space-y-5 flex flex-col items-center justify-center">
+                <div className="space-y-5 flex flex-col ">
                     <div>
                         <TagList className="grid grid-cols-3 sm:grid-cols-4 gap-5" type="image" tagsList={[
                             {
@@ -76,7 +75,7 @@ export default function AboutMe() {
                 <div className="whitespace-pre-line leading-8">{personalDetails.hobbies}
                 </div>
                 <button
-                    className="mt-5 btn-primary" onClick={() => openModal('liveprojects')}>Daily Coding Journey</button>
+                    className="mt-5 btn-primary py-2" onClick={() => openModal('liveprojects')}>Daily Coding Journey</button>
             </div>
         },
 

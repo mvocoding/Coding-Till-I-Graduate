@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useModal } from './ModalContext';
 import { useEffect, useState } from 'react';
 import { Loading } from './Loading';
-import { TagList } from './Tag';
-import { TabItem } from './model';
 import Tab from './Tab';
 
 interface SubmissionDetail {
@@ -53,7 +51,7 @@ export const CodePreview: React.FC<Props> = ({ className }) => {
   return (
     <Modal className='!w-full min-h-screen'>
       <Modal.Header>
-        <div></div>
+        <h2 className="text-center text-xl text-[#0f0]">Code Preview</h2>
       </Modal.Header>
       <Modal.Body className={``}>
         <Tab tabsList={[

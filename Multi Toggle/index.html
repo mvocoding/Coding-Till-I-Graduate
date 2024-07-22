@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Multi Toggle</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: "Montserrat", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="text-sm text-slate-300  min-h-screen w-full flex items-center justify-center bg-[#24252D]">
+        <form class="rounded-xl  isolate w-full max-w-xl    bg-[#1D1E26] flex flex-col items-center justify-center gap-7 p-7 sm:p-10  text-center">
+            <h2 class="font-bold text-xl ">Browse my interests            </h2>
+            <p class="sm:max-w-[70%] opacity-80">Select some interests to help us personalize your
+                experience on Edmondo.</p>
+            <div id="wrap-checkbox" class="  flex flex-wrap *:min-w-[120px] items-center justify-center  *:flex-1 w-full gap-3 
+            [&_input]:hidden 
+            [&_label]:block [&_label]:px-2  [&_label]:py-4  [&_label]:relative 
+                        
+            before:[&_label]:rounded-lg [&_label]:cursor-pointer     
+            before:[&_label]:absolute before:[&_label]:inset-0 before:[&_label]:-z-10  before:[&_label]:bg-black/20 before:[&_label]:shadow-md before:[&_label]:shadow-transparent    
+            hover:before:[&_label]:bg-rose-500/50  before:[&_label]:transition-all before:[&_label]:duration-200  
+            
+            before:[&_input:checked~label]:shadow-rose-500/50 
+            ">
+
+
+            </div>
+            <div class="w-full sm:w-[50%] gap-3  flex flex-col sm:flex-row *:flex-1 *:rounded-lg *:py-3   
+            *:border *:border-black/80  text-base 
+            [&_.active]:bg-rose-500 *:shadow-md *:shadow-transparent *:transition-all *:duration-200  
+            
+            hover:[&_button]:shadow-rose-500  ">
+                <button>Skip</button>
+                <button class="active ">Save</button>
+            </div>
+        </form>
+
+        <template id="tplcheckbox">
+            <div>
+                <input type="checkbox" id="" name="checkbox">
+                <label for="">---</label> 
+            </div>
+        </template>
+
+
+        <script>
+            const list = ['Math', 'Science', 'English', 'World Language', 'Health & PE', 'Special Education', 'Special Development', 'Technology', 'Social Studies'];
+            const wrapper = document.getElementById('wrap-checkbox');
+            const tplCheckbox = document.getElementById('tplcheckbox');
+
+            list.forEach((checkbox, index) => {
+                const checkboxEl = tplCheckbox.content.cloneNode(true);      
+                const input = checkboxEl.querySelector('input');
+                const label = checkboxEl.querySelector('label');
+                input.setAttribute('id', `checkbox${index+1}`);
+                label.setAttribute('for', `checkbox${index+1}`);
+                label.textContent = checkbox; 
+
+                wrapper.appendChild(checkboxEl);
+            })
+        </script>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { twMerge } from "tailwind-merge";
 import { TabItem } from "./model";
 
@@ -20,11 +20,14 @@ interface TabContentProps {
     isActive: boolean;
 }
 
-const TabContent: React.FC<TabContentProps> = ({ content, isActive }) => (
-    <div className={twMerge('absolute w-full top-0 p-5 transition-all duration-300 space-y-2 leading-6 text-sm',
-        isActive ? 'left-0' : 'left-[1000px]'
-    )}>{content}</div>
-)
+const TabContent: React.FC<TabContentProps> = ({ content, isActive }) => {
+    return (
+        <div 
+            className={twMerge('absolute w-full top-0 p-5 transition-all duration-300 space-y-2 leading-6 text-sm h-full',
+                isActive ? ' left-0 visible ' : ' left-[1000px] invisible '
+            )}>{content}</div>
+    )
+}
 
 interface Props {
     tabsList: TabItem[];
@@ -32,11 +35,12 @@ interface Props {
 }
 export const Tab: React.FC<Props> = ({ tabsList, className }) => {
     const [activeTab, setActiveTab] = useState(0);
+
     return (
         <div className={twMerge(`grid grid-rows-[auto_1fr] h-full `,
             className
         )}>
-            <div className={`grid grid-cols-${tabsList.length}
+            <div className={`grid [grid-template-columns:repeat(auto-fit,minmax(150px,1fr))] [grid-auto-rows:1fr]  
                     *:border-b-0 *:
                 `}>
                 {tabsList.map((tab, index) => (

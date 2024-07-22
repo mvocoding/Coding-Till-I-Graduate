@@ -14,23 +14,23 @@ export const modalsList: Record<string, ModalItem> = {
         shortcut: 'Home',
         show: true,
         text: 'About Me',
-        img: 'public/images/start-icon.png',
+        img: 'images/start-icon.png',
         component: <AboutMe />
     },
-    'mycv': {
-        name: 'mycv',
-        shortcut: 'My CV',
-        text: 'My CV',
-        show: true,
-        img: 'public/images/cv.png',
-        component: <MyCV />
-    },
+    // 'mycv': {
+    //     name: 'mycv',
+    //     shortcut: 'My CV',
+    //     text: 'My CV',
+    //     show: true,
+    //     img: 'images/cv.png',
+    //     component: <MyCV />
+    // },
     'experience': {
         name: 'experience',
         shortcut: 'Experience',
         show: true,
         text: 'Experience',
-        img: 'public/images/about-icon.png',
+        img: 'images/about-icon.png',
         component: <Experience />
     },
     'education': {
@@ -38,7 +38,7 @@ export const modalsList: Record<string, ModalItem> = {
         shortcut: 'Education',
         show: true,
         text: 'Education',
-        img: 'public/images/education.png',
+        img: 'images/education.png',
         component: <Education />
     },
     'sideprojects': {
@@ -46,7 +46,7 @@ export const modalsList: Record<string, ModalItem> = {
         shortcut: 'Side Projects',
         show: true,
         text: 'Side Projects',
-        img: 'public/images/projects-icon.png',
+        img: 'images/projects-icon.png',
         component: <Project />
     },
     'liveprojects': {
@@ -54,21 +54,21 @@ export const modalsList: Record<string, ModalItem> = {
         shortcut: 'Daily Coding',
         show: true,
         text: 'Daily Coding',
-        img: 'public/images/folder-icon.png',
+        img: 'images/folder-icon.png',
         component: <LiveProjects /> 
     },
     'codepreview': {
         name: 'codepreview',
         show: false,
         text: 'codepreview',
-        img: 'public/images/projects-icon.png',
+        img: 'images/projects-icon.png',
         component: <CodePreview />
     },
     'projectdetail': {
         name: 'projectdetail',
         show: false,
         text: 'projectdetail',
-        img: 'public/images/projects-icon.png',
+        img: 'images/projects-icon.png',
         component: <ProjectDetail />
     },
 };
@@ -105,7 +105,7 @@ export const projectList: ProjectItem[] = [
             
             This project enhanced my understanding of these technologies and allowed me to refine my skills in configuring development environments, creating APIs with .NET WebAPI, and managing application state using Redux.
             `,
-            images: ['public/images/restore.png'],
+            images: ['images/restore.png'],
             git: 'https://github.com/MaxvoDev/Restore-Build-an-E-commerce-Store-with-Dotnet-React-Redux'
         },
         tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
@@ -122,10 +122,10 @@ export const projectList: ProjectItem[] = [
             •   Skillfully embedding the synthesized speech as subtitles onto a chosen background video.
             •   Offering a straightforward and intuitive graphical interface, ensuring ease of use for all users.
             `,
-            images: ['public/images/text-to-video.png'],
+            images: ['images/text-to-video.png'],
             git: 'https://github.com/MaxvoDev/Python---Text-to-Video-using-AI-Voice-with-GUI'
         },
-        tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
+        tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TEST' }]
     },
     {
         name: 'Agecare Shift Sniper',
@@ -140,7 +140,7 @@ export const projectList: ProjectItem[] = [
             •   Easy Settings: Lets users adjust settings like how far they're willing to travel, how often the program checks for shifts, and areas they don't want to work in.
             •   Saving Data: Keeps track of shift details, past shift lists, and user settings in simple files, so everything stays the same each time the program runs.
             `,
-            images: ['public/images/agecare.png'],
+            images: ['images/agecare.png'],
             git: 'https://github.com/MaxvoDev/BOT-Python-AgeCare-Shift-Sniper'
         },
         tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
@@ -156,7 +156,7 @@ export const projectList: ProjectItem[] = [
             •   Implemented advanced features, including CAPTCHA solving and real-time notifications via Twilio and Telegram, enhancing user experience and application success rates.
             •   Engineered the bot to efficiently handle and process user data, ensuring accuracy and reliability in application submissions, and showcasing strong skills in data handling and user privacy considerations.
             `,
-            images: ['public/images/visa.png'],
+            images: ['images/visa.png'],
             git: ''
         },
         tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
