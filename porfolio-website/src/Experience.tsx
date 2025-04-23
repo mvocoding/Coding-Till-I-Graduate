@@ -5,7 +5,6 @@ import { experiences } from "./data";
 
 
 export default function Experience() {
-
     return (
         <Modal>
             <Modal.Header></Modal.Header>

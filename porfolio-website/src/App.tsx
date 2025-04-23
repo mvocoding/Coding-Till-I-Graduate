@@ -10,7 +10,6 @@ import { modalsList } from './data';
 function App() {
   const { currentModal } = useModal();
   const { theme } = useTheme();
-
     useEffect(() => {
     const root = document.getElementById('root');
     if (root) {

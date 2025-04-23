@@ -1,10 +1,9 @@
 import AboutMe from "./AboutMe";
+import { AutoLinkOpener } from "./AutoLinkOpener";
 import { CodePreview } from "./CodePreview";
-import Education from "./Education";
 import Experience from "./Experience";
 import { LiveProjects } from "./LiveProjects";
 import { ModalItem, ProgressItem, ProjectItem } from "./model";
-import MyCV from "./MyCV";
 import { Project } from "./Project";
 import { ProjectDetail } from "./ProjectDetail";
 
@@ -17,29 +16,13 @@ export const modalsList: Record<string, ModalItem> = {
         img: 'images/start-icon.png',
         component: <AboutMe />
     },
-    // 'mycv': {
-    //     name: 'mycv',
-    //     shortcut: 'My CV',
-    //     text: 'My CV',
-    //     show: true,
-    //     img: 'images/cv.png',
-    //     component: <MyCV />
-    // },
-    'experience': {
-        name: 'experience',
-        shortcut: 'Experience',
+    'timeline': {
+        name: 'timeline',
+        shortcut: 'Timeline',
         show: true,
-        text: 'Experience',
+        text: 'Timeline',
         img: 'images/about-icon.png',
         component: <Experience />
-    },
-    'education': {
-        name: 'education',
-        shortcut: 'Education',
-        show: true,
-        text: 'Education',
-        img: 'images/education.png',
-        component: <Education />
     },
     'sideprojects': {
         name: 'sideprojects',
@@ -55,7 +38,7 @@ export const modalsList: Record<string, ModalItem> = {
         show: true,
         text: 'Daily Coding',
         img: 'images/folder-icon.png',
-        component: <LiveProjects /> 
+        component: <LiveProjects />
     },
     'codepreview': {
         name: 'codepreview',
@@ -71,6 +54,22 @@ export const modalsList: Record<string, ModalItem> = {
         img: 'images/projects-icon.png',
         component: <ProjectDetail />
     },
+    'linkedin': {
+        name: 'linkedin',
+        show: true,
+        shortcut: 'LinkedIn',
+        text: 'linkedin',
+        img: 'images/linkedin.svg',
+        component: <AutoLinkOpener url="https://www.linkedin.com/in/max-vo/"></AutoLinkOpener>
+    },
+    'codemax': {
+        name: 'codemax',
+        shortcut: 'CodeMax',
+        show: true,
+        text: 'codemax',
+        img: 'images/codemax.png',
+        component: <AutoLinkOpener url="https://codemax.dev/"></AutoLinkOpener>
+    }
 };
 
 export const personalDetails: Record<string, string> = {
@@ -165,19 +164,41 @@ export const projectList: ProjectItem[] = [
 
 export const experiences: ProgressItem[] = [
     {
-        title: 'Junior Web Developer',
-        time: 'Viet Nam, Sep 2018 – Nov 2019',
+        title: 'Bachelor of Software Engineering',
+        time: 'Vietnam, 2013 – 2017',
+        subtitle: 'VNUHCM - University of Science',
+        fullDesc: `• Completed a comprehensive program in Software Engineering, gaining strong theoretical and practical knowledge.
+        • Developed a solid foundation in programming languages such as Java, C++, and Python.
+        • Participated in various software development projects, working both individually and as part of a team.
+        • Conducted research on software development methodologies and best practices.
+        • Graduated with a Bachelor's degree in Software Engineering.`,
+        image: 'images/khtn.png'
+    },
+    {
+        title: 'Front-End Web Developer',
+        time: 'Viet Nam, 2018 – 2019',
         subtitle: 'DXC Technology',
         fullDesc: `• Collaborated closely with cross-functional teams to translate UI/UX designs into functional front-end code, maintaining code
         quality and adherence to design standards. Translated UI / UX designs wireframes from Figma into functional front-end code.
         • Engineered fully responsive, user-friendly web applications using tools such as JavaScript frameworks for ReactJS, AngularJS.
         • Constructed various Angular Libraries for the development team to use in different projects.`,
         image: 'images/dxc.png',
-        tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
+        tags: [
+            { text: 'JAVASCRIPT' },
+            { text: 'TYPESCRIPT' },
+            { text: 'REACT' },
+            { text: 'ANGULAR' },
+            { text: 'HTML' },
+            { text: 'CSS' },
+            { text: 'SASS' },
+            { text: 'GIT' },
+            { text: 'CI/CD' },
+            { text: 'JIRA' }
+        ]
     },
     {
         title: 'Web Developer',
-        time: 'Viet Nam, Jan 2020 – May 2022',
+        time: 'Viet Nam, 2020 – 2022',
         subtitle: 'Starfish Software Company Limited',
         fullDesc: `• Worked collaboratively with a team of 10 developers in the design and development of the front-end aspects of an online
         crime reporting website with future support for multitenancy.
@@ -189,46 +210,22 @@ export const experiences: ProgressItem[] = [
         stakeholders with comprehensive insights and functionality.
         • Optimized the old codebase, resulting in a 20% increase in website speed.`,
         image: 'images/starfish.png',
-        tags: [{ text: 'HTML' }, { text: 'CSS' }, { text: 'TAILWIND' }]
-    },
-    // {
-    //     title: 'Freelance Work & Travel',
-    //     time: 'Adelaide - Australia, Oct 2022 - Present',
-    //     subtitle: 'Freelancer',
-    //     fullDesc: `• Joined freelancer platforms and worked remotely as a developer during my working holiday in Australia.
-    //     • Specialized in creating bots, web applications, and occasional smart contracts in Solidity.
-    //     • Enjoyed the flexibility of remote work, balancing professional commitments with exploration and experiences in Australia.`,
-    //     image: 'images/upwork.png',
-    //     tags: ['HTML', 'CSS', 'Javascript', 'ReactJS', 'Angular', 'SiteCore']
-    // }
-]
-
-
-export const educationDetails: ProgressItem[] = [
-    {
-        title: 'Bachelor of Software Engineering',
-        time: 'Ho Chi Minh City, Vietnam, Sep 2013 – Jun 2017',
-        subtitle: 'VNUHCM - University of Science',
-        fullDesc: `• Completed a comprehensive program in Software Engineering, gaining strong theoretical and practical knowledge.
-        • Developed a solid foundation in programming languages such as Java, C++, and Python.
-        • Participated in various software development projects, working both individually and as part of a team.
-        • Conducted research on software development methodologies and best practices.
-        • Graduated with a Bachelor's degree in Software Engineering.`,
-        image: 'images/khtn.png'
-    },
-    {
-        title: 'Software Engineering Courses',
-        time: 'Online, May 2022 – Aug 2022',
-        subtitle: 'Coursera',
-        fullDesc: `• Completed numerous courses in Software Engineering, expanding knowledge in various domains.
-        • Learned advanced programming techniques, software design principles, and project management skills.
-        • Engaged in practical projects and assignments to apply theoretical knowledge.
-        • Gained certifications in key areas of software engineering and development.`,
-        image: 'images/coursera.png'
+        tags: [
+            { text: 'NODEJS' },
+            { text: 'JAVASCRIPT' },
+            { text: 'TYPESCRIPT' },
+            { text: 'REACT' },
+            { text: 'ANGULAR' },
+            { text: 'HTML' },
+            { text: 'CSS' },
+            { text: 'GIT' },
+            { text: 'CI/CD' },
+            { text: 'JIRA' }
+        ]
     },
     {
         title: 'Master of Information Technology',
-        time: 'Adelaide, Australia, Jan 2024 – Present',
+        time: 'Adelaide, 2024 – Present',
         subtitle: 'Torrens University Australia',
         fullDesc: `• Pursuing advanced studies in Computer Software Engineering, focusing on cutting-edge technologies and methodologies.
         • Engaging in in-depth coursework and hands-on projects to enhance software development skills.
@@ -236,4 +233,4 @@ export const educationDetails: ProgressItem[] = [
         • Gaining expertise in software design, development, and implementation.`,
         image: 'images/torrens.png'
     },
-];
+]

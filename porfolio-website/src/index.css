@@ -42,7 +42,7 @@ body,
   display: flex;
   justify-items: center;
   align-items: center;
-  overflow:scroll;
+  overflow:hidden;
 }
 
 #root {

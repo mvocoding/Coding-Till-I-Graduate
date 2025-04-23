@@ -13,9 +13,14 @@ export default function AboutMe() {
             title: 'About Me',
             content:
                 <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-center mb-5">
+                        <video className="w-full md:w-[50%] max-h-[25rem] object-cover object-center" controls poster="/thumbnail.png">
+                            <source src="/resume-video.mp4" type="video/mp4" />
+                        </video>
+                    </div>
                     <div className="text-sm leading-8 whitespace-pre-line">{personalDetails.aboutme}
                     </div>
-                    <div className="mt-5 flex *:flex-1 justify-center gap-2">
+                    <div className="mt-5 flex flex-col md:flex-row *:flex-1 justify-center gap-2">
                         <a href="Resume.pdf" download className="btn-primary">Download My Resume</a>
                         <button onClick={() => openModal('liveprojects')} className="btn-primary">Daily Coding Journey</button>
                     </div>

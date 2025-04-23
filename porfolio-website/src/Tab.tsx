@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { twMerge } from "tailwind-merge";
 import { TabItem } from "./model";
 
@@ -23,7 +23,7 @@ interface TabContentProps {
 const TabContent: React.FC<TabContentProps> = ({ content, isActive }) => {
     return (
         <div 
-            className={twMerge('absolute w-full top-0 p-5 transition-all duration-300 space-y-2 leading-6 text-sm h-full',
+            className={twMerge('relative [grid-area:stack] w-full p-5 transition-all duration-300 space-y-2 leading-6 text-sm',
                 isActive ? ' left-0 visible ' : ' left-[1000px] invisible '
             )}>{content}</div>
     )
@@ -47,8 +47,8 @@ export const Tab: React.FC<Props> = ({ tabsList, className }) => {
                     <TabButton key={index} title={tab.title} isActive={index == activeTab} onClick={() => setActiveTab(index)}></TabButton>
                 ))}
             </div>
-            <div className={`h-full bg-black/40 ring-8 ring-black/5 border border-zinc-700/30 p-6 overflow-x-hidden overflow-y-scroll
-            relative`}>
+            <div className={`bg-black/40 ring-8 ring-black/5 border border-zinc-700/30 overflow-x-hidden overflow-y-scroll
+            grid [grid-template-areas:'stack']`}>
                 {tabsList.map((tab, index) => (
                     <TabContent key={index} content={tab.content} isActive={index == activeTab}></TabContent>
                 ))}
