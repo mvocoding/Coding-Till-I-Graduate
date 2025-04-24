@@ -1,9 +1,53 @@
 <html>
+
 <head>
     <title>Menu & Responsive Styling</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..20');
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+    </style>
 </head>
-<body>
-    <p class="text-red-900">Hello</p>
+
+<body class="font-[Inter] text-base leading-relaxed flex  bg-teal-600 items-center justify-center">
+    <header class="shadow-md rounded-xl  relative bg-white px-6 py-2   w-[70%] flex items-center justify-between mx-auto ">
+        <a href="#"
+            class="font-bold text-lg uppercase tracking-wide text-gray-800 hover:text-orange-500 transition-colors">
+            CodeMax
+        </a>
+        <div class=" ">
+            <input class="hidden peer" id="menu" name="menu" type="checkbox">
+            <div class="
+                hidden max-md:flex 
+                *:absolute *:right-4 *:top-1/2 *:-translate-y-1/2   
+                peer-checked:[&_.openbtn]:hidden
+                peer-checked:[&_.closebtn]:flex
+                ">
+                <label for="menu" class="material-symbols-outlined openbtn">menu</label>
+                <label for="menu" class="material-symbols-outlined hidden closebtn">close</label>
+            </div>
+            <nav class="
+                gap-x-4 max-md:p-4 
+                max-md:max-h-0  transition-all duration-100  ease-in-out   overflow-hidden 
+                max-md:invisible  max-md:absolute right-4 top-[100%] bg-white 
+                flex max-md:flex-col  max-md:gap-y-4 p-2 hover:*:text-orange-500
+                peer-checked:visible 
+                peer-checked:max-h-[1000px]">
+                <a href="#">Featured</a>
+                <a href="#">Shop</a>
+                <a href="#">FAQ</a>
+            </nav>
+        </div>
+    </header>
 </body>
+
 </html>
