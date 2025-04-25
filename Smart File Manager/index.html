@@ -29,8 +29,8 @@
     </style>
 </head>
 
-<body class="
-text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-100 to-purple-100 ">
+<body class="flex flex-col overflow-hidden 
+text-base text-gray-800 bg-gradient-to-tr from-blue-100 via-white-100 to-purple-100 ">
     <nav class="bg-white shadow-lg py-4 px-10 relative">
         <div class="flex justify-between">
             <a class="font-extrabold uppercase text-xl text-blue-600 " href="#">SupaFile</a>
@@ -55,42 +55,44 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
             </div>
         </div>
     </nav>
-    <section class="
-    space-y-6 
-    my-10  mx-auto p-10  max-w-3xl   bg-white min-h-[400px] rounded-3xl  shadow-2xl ">
-        <div class="text-center space-y-6  ">
-            <h2 class="font-bold text-2xl">Upload Your Files </h2>
-            <div id="drop-zone"
-                class="relative border-2 border-dashed rounded-2xl  p-8  text-gray-500 text-sm hover:border-blue-500  ">
-                <p>Drag & drop a file here or click to choose</p>
-                <input id="file-input" type="file" class="absolute inset-0 opacity-0 cursor-pointer ">
-                <ul id="preview-wrapper" class="mt-6 flex ">
+    <div class="p-10 ">
+        <section class="w-full 
+        mx-auto p-10  max-w-3xl   bg-white rounded-3xl  shadow-2xl ">
+           <div class="text-center space-y-6  ">
+               <h2 class="font-bold text-2xl">Upload Your Files </h2>
+               <div id="drop-zone"
+                   class="relative border-2 border-dashed rounded-2xl  p-8  text-gray-500 text-sm hover:border-blue-500  ">
+                   <p>Drag & drop a file here or click to choose</p>
+                   <input id="file-input" type="file" class="absolute inset-0 opacity-0 cursor-pointer ">
+                   <ul id="preview-wrapper" class="mt-6 flex ">
+   
+                   </ul>
+               </div>
+               <button data-state="loading"  id="uploadbtn"  class="active flex items-center justify-center gap-4  
+               group                                        
+               [&_svg]:hidden [&_svg]:size-5 
+               transition-all hover:from-blue-600 hover:to-indigo-600 
+               bg-gradient-to-tr from-blue-500 to-indigo-500  
+               text-white font-bold w-full py-2 rounded-full ">Upload Now
+                   <svg aria-hidden="true" class="  w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                       viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <path
+                           d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                           fill="currentColor" />
+                       <path
+                           d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                           fill="currentFill" />
+                   </svg>
+               </button>
+           </div>
+           <div class="mt-6 ">
+               <h2 class="font-bold text-xl ">Recent Uploads</h2>
+               <ul id="recentFiles-wrapper" class="flex grid grid-cols-3 gap-3 max-h-[200px]     overflow-y-scroll   ">
+               </ul>
+           </div>
+       </section> 
+    </div>
 
-                </ul>
-            </div>
-            <button data-state="loading"  id="uploadbtn"  class="active flex items-center justify-center gap-4  
-            group [&data-[state='loading']_svg]:flex                                             
-            [&_svg]:hidden [&_svg]:size-5 
-            transition-all hover:from-blue-600 hover:to-indigo-600 
-            bg-gradient-to-tr from-blue-500 to-indigo-500  
-            text-white font-bold w-full py-2 rounded-full ">Upload Now
-                <svg aria-hidden="true" class="  w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                    viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor" />
-                    <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill" />
-                </svg>
-            </button>
-        </div>
-        <div>
-            <h2 class="font-bold text-xl ">Recent Uploads</h2>
-            <ul id="recentFiles-wrapper" class="flex grid grid-cols-3 gap-3 ">
-            </ul>
-        </div>
-    </section>
     <template id="previewItemTpl">
         <li class="bg-gray-300/50  p-2  relative">
             <span
@@ -99,15 +101,13 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
         </li>
     </template>
     <template id="recentItemTpl">
-        <li class="mt-4">
-            <img src="#" alt="" class="w-full h-[150px] object-cover object-center ">
+        <li class="mt-4 *:cursor-pointer">
+            <img src="#" alt="" class="w-full max-h-[200px]  object-cover object-center overflow-scroll ">
         </li>
     </template>
 
     <script>
         const client = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
-
-
         const dropzone = document.getElementById('drop-zone');
         const uploadBtn = document.getElementById('uploadbtn');
         const fileInput = document.getElementById('file-input');
@@ -140,9 +140,15 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
         });
 
         uploadBtn.addEventListener('click', async e => {
+            if(!selectedFile){
+                alert('Please select file first!');
+                return;
+            }
             const filePath = `${Date.now()}-${selectedFile.name}`;
             const { data, error } = await client.storage
                 .from('uploads').upload(filePath, selectedFile);
+            await listFiles();
+            alert('Upload file successfully!');
         })
 
         async function listFiles() {
