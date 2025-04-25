@@ -4,6 +4,7 @@
     <title>SupaFile - Smart File Manager</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../SUPABASE.JS"></script>
 
 
     <style>
@@ -56,7 +57,7 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
     </nav>
     <section class="
     space-y-6 
-    mt-10 mx-auto p-10  max-w-3xl   bg-white min-h-[400px] rounded-3xl  shadow-2xl ">
+    my-10  mx-auto p-10  max-w-3xl   bg-white min-h-[400px] rounded-3xl  shadow-2xl ">
         <div class="text-center space-y-6  ">
             <h2 class="font-bold text-2xl">Upload Your Files </h2>
             <div id="drop-zone"
@@ -67,13 +68,13 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
 
                 </ul>
             </div>
-            <button data-state="disabled" id="uploadbtn"  class="flex items-center justify-center gap-4  
-            data-[state='disabled']:pointer-events-none 
-            [&_svg]:hidden [&_svg]:size-6 
+            <button data-state="loading"  id="uploadbtn"  class="active flex items-center justify-center gap-4  
+            group [&data-[state='loading']_svg]:flex                                             
+            [&_svg]:hidden [&_svg]:size-5 
             transition-all hover:from-blue-600 hover:to-indigo-600 
             bg-gradient-to-tr from-blue-500 to-indigo-500  
             text-white font-bold w-full py-2 rounded-full ">Upload Now
-                <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                <svg aria-hidden="true" class="  w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -104,10 +105,7 @@ text-base font-[Inter] text-gray-800 bg-gradient-to-tr from-blue-100 via-white-1
     </template>
 
     <script>
-        const SUPABASE_URL = 'https://rxeesxokvejqrzpbllrx.supabase.co'; // ← Replace
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4ZWVzeG9rdmVqcXJ6cGJsbHJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1Mzg4MjgsImV4cCI6MjA2MTExNDgyOH0.KR-LWH4HxZlzX6znH5Jj2bWITBHp_YQAarzViLgfpUQ'; // ← Replace
-
-        const client = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const client = supabase.createClient(config.SUPABASE_URL, config.SUPABASE_ANON_KEY);
 
 
         const dropzone = document.getElementById('drop-zone');
