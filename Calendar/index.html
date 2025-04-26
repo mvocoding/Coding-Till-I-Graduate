@@ -17,45 +17,191 @@
         }
     </style>
 </head>
+
 <body class="font-[Inter] text-base leading-relaxed text-white
 bg-[#120533]  min-h-screen flex items-center justify-center">
-    <section id="calendar-wrapper" class="
-    rounded-xl text-center 
-    w-full max-w-md  bg-blue-900  p-4  ">
-        <div class="">
-            <div class="relative text-2xl 
+    <section id="calendar-wrapper" class="text-center relative 
+    w-full max-w-md  bg-blue-900  p-4  text-sm ">
+        <div id="panel-new-event"
+            class="
+            transition-all duration-200 
+            scale-[0] invisible
+            [&.active]:scale-100 [&.active]:visible 
+            absolute inset-0 w-full bg-[#D500E8] bg-opacity-40 backdrop-blur-md z-[1000] py-10  px-12  text-base ">
+            <form action="#" class="flex flex-col items-start gap-y-4 ">
+                <p>Add Event on <span class="font-semibold">17/04/2025</span></p>
+                <div class="flex gap-4  ">
+                    <input id="radio-1" name="radio-1" class="hidden peer/radio-1"  type="radio" checked>
+                    <label for="radio-1" class="
+                    peer-checked/radio-1:bg-[#120533] 
+                    py-1 px-2 rounded-lg 
+                    flex items-center gap-3   before:size-3 before:bg-blue-500  before:block before:rounded-full">
+                        Personal
+                    </label>
+                    
+                </div>
+                <div class="w-full ">
+                    <input class="text-gray-800  rounded-lg   w-full p-2 " type="text" placeholder="eg. meeting">
+                </div>
+                <button class="font-semibold  rounded-lg  uppercase bg-[#120533]/80  hover:bg-[#120533] w-full p-2 ">Save Event</button>
+            </form>
+        </div>
+        <div id="eventPanel" class="transition-all duration-200 
+        invisible max-h-0 [&.active]:visible [&.active]:max-h-[1000px]
+        text-gray-300 absolute left-0 top-full w-full bg-[#150045] py-6  space-y-1 ">
+            <div>
+                <p>Wednesday</p>
+                <p>16 April</p>
+            </div>
+            <span class="material-symbols-outlined text-6xl">calendar_month</span>
+            <p class="text-gray-500 ">No events for this day</p>
+            <button class="px-6 py-2  bg-[#D500E8] rounded-full ">Add Event</button>
+        </div>
+        <div class="relative text-2xl 
             hover:[&_button]:scale-125 transition-all duration-100 
             [&_button]:absolute [&_button]:top-1/2 [&_button]:-translate-y-1/2
             ">
-                <button id="prevBtn" class="left-0 prevBtn material-symbols-outlined">chevron_left</button>
-                <button id="nextBtn" class="right-0 prevBtn material-symbols-outlined">chevron_right</button>
-                <h2 id="dateStr" class="font-bold text-xl">---</h2>
-            </div>
-            <ul class="*:flex *:flex-wrap mt-4  
-            [&_.inactive]:pointer-events-none  [&_.inactive]:bg-gray-300/20 
-            hover:[&_span]:bg-gray-800/50 [&_span]:cursor-pointer   [&_span]:flex [&_span]:items-center [&_span]:justify-center [&_span]:aspect-square  [&_span]:w-[13%]  *:justify-between      ">
-                <li class="font-semibold ">
-                    <span>Sun</span>
-                    <span>Mon</span>
-                    <span>Tue</span>
-                    <span>Wed</span>
-                    <span>Thu</span>
-                    <span>Fri</span>
-                    <span>Sat</span>
-                </li>
-                <li id="date-wrapper">
-                </li>
-            </ul>
+            <button id="prevBtn" class="left-0 prevBtn material-symbols-outlined">chevron_left</button>
+            <button id="nextBtn" class="right-0 prevBtn material-symbols-outlined">chevron_right</button>
+            <h2 id="dateStr" class="font-bold text-xl">---</h2>
         </div>
+        <ul class="*:flex *:flex-wrap mt-4  
+            [&_.inactive]:pointer-events-none  [&_.inactive]:bg-gray-300/20 
+            hover:[&_span]:bg-gray-800/50 [&_span]:cursor-pointer   [&_span]:gap-1  [&_span]:flex [&_span]:items-center [&_span]:justify-center [&_span]:aspect-square  [&_span]:w-[13%]  *:justify-between 
+            
+            [&_.hasevent]:relative  after:[&_.hasevent]:absolute 
+            after:[&_.hasevent]:top-0 after:[&_.hasevent]:right-0  
+            after:[&_.hasevent]:content-[''] after:[&_.hasevent]:size-2 
+            after:[&_.hasevent]:rounded-full 
+            after:[&_.hasevent]:bg-red-300 ">
+            <li class="font-semibold ">
+                <span>Sun</span>
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+            </li>
+            <li id="date-wrapper">
+            </li>
+        </ul>
     </section>
     <script>
         const dateWrapper = document.getElementById('date-wrapper');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const dateStr = document.getElementById('dateStr');
+        const eventPanel = document.getElementById('eventPanel');
         let currentDate = new Date();
+        let currYear = currentDate.getFullYear();
+        let currMonth = currentDate.getMonth();
 
-        function renderCalendarDays(year, month){
+        const userEvents = [
+            {
+                id: 1,
+                date: `2023-${pad(currMonth + 1, 2)}-06`,
+                time: '13:00',
+                event_id: 3,
+                desc: "Meal with dad"
+            },
+            {
+                id: 2,
+                date: `2023-${pad(currMonth + 1, 2)}-06`,
+                time: '',
+                event_id: 2,
+                desc: "Tax returns"
+            },
+            {
+                id: 3,
+                date: `2023-${pad(currMonth + 1, 2)}-26`,
+                time: '',
+                event_id: 1,
+                desc: "Special Day"
+            },
+            {
+                id: 4,
+                date: '2023-09-25',
+                time: '11:45',
+                event_id: 2,
+                desc: "Meeting with John"
+            },
+            {
+                id: 5,
+                date: '2023-12-12',
+                time: '',
+                event_id: 1,
+                desc: "My Birthday"
+            },
+            {
+                id: 6,
+                date: '2023-11-30',
+                time: '17:30',
+                event_id: 2,
+                desc: "Stock take"
+            },
+            {
+                id: 7,
+                date: '2023-05-25',
+                time: '19:30',
+                event_id: 1,
+                desc: "First iCodeThis challenge"
+            },
+            {
+                id: 8,
+                date: '2023-09-01',
+                time: '',
+                event_id: 3,
+                desc: "Wife's birthday"
+            },
+            {
+                id: 9,
+                date: '2025-04-26',
+                time: '',
+                event_id: 3,
+                desc: "Wife's birthday"
+            }
+        ];
+
+        const eventTypes = [
+            {
+                id: 1,
+                name: "Personal",
+                //icon: "restaurant",
+                color: "green"
+            },
+            {
+                id: 2,
+                name: "Work",
+                //icon: "celebration",
+                color: "blue"
+            },
+            {
+                id: 3,
+                name: "Family",
+                //icon: "shopping_cart",
+                color: "red"
+            },
+        ];
+
+        function hasEvent(dateStr) {
+            return userEvents.some(e => {
+                return e.date == dateStr
+            });
+        }
+        function pad(num, size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
+        function dateToStr(date) {
+            const formattedDate = `${date.getFullYear()}-${String(date.getMonth()).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+            return formattedDate;
+        }
+        function createDateEl(date) {
+
+        }
+        function renderCalendarDays(year, month) {
             const firstDate = new Date(year, month - 1, 1);
             const lastDate = new Date(year, month, 0);
 
@@ -66,22 +212,29 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
 
             const firstDayOfWeek = firstDate.getDay();
             const lastDayOfWeek = lastDate.getDay();
-            
+
             let calendarDay = [];
-            for(let i=firstDayOfWeek - 1; i>=0; i--){
+            for (let i = firstDayOfWeek - 1; i >= 0; i--) {
                 let tmp = new Date(firstDate);
                 tmp.setDate(i * -1);
-                let element = `<span class="inactive">${tmp.getDate()}</span>`;
+                const formattedDate = dateToStr(tmp);
+                const dateHasEvent = hasEvent(formattedDate);
+                let element = `<span data-date="${formattedDate}" class="inactive ${dateHasEvent && 'hasevent'}">${tmp.getDate()}</span>`;
                 calendarDay.push(element);
             }
-            for(let i=1; i<=lastDate.getDate(); i++){
-                let element = `<span>${i}</span>`;
+            for (let i = 1; i <= lastDate.getDate(); i++) {
+                let tmp = new Date(year, month, i);
+                const formattedDate = dateToStr(tmp);
+                const dateHasEvent = hasEvent(formattedDate);
+                let element = `<span data-date="${formattedDate}" class="${dateHasEvent && 'hasevent'}">${i}</span>`;
                 calendarDay.push(element);
             }
-            for(let i=1; i<=6-lastDayOfWeek; i++){
+            for (let i = 1; i <= 6 - lastDayOfWeek; i++) {
                 let tmp = new Date(lastDate);
                 tmp.setDate(tmp.getDate() + i);
-                let element = `<span class="inactive">${tmp.getDate()}</span>`;
+                const formattedDate = dateToStr(tmp);
+                const dateHasEvent = hasEvent(formattedDate);
+                let element = `<span data-date="${formattedDate}" class="inactive ${dateHasEvent && 'hasevent'}">${tmp.getDate()}</span>`;
                 calendarDay.push(element);
             }
             dateWrapper.innerHTML = calendarDay.join('');
@@ -89,14 +242,15 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
 
         prevBtn.addEventListener('click', e => {
             currentDate.setMonth(currentDate.getMonth() - 1);
-            renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth()+1);
+            renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);
         });
         nextBtn.addEventListener('click', e => {
             currentDate.setMonth(currentDate.getMonth() + 1);
-            renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth()+1);
+            renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);
         });
-        
-        renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth()+1);
+
+        renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);
     </script>
 </body>
+
 </html>
