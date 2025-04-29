@@ -1,0 +1,190 @@
+<html>
+
+<head>
+    <title>Expense Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body
+    class="bg-gradient-to-tr from-indigo-500 to-blue-700 text-white min-h-screen flex justify-center items-center px-4">
+    <div class="relative w-full max-w-3xl bg-gray-900 p-8 md:p-10 rounded-3xl shadow-2xl">
+        <div id="modalNewExpense" class="
+        absolute inset-0 z-[100] flex items-center justify-center
+        bg-black/40 backdrop-blur-sm transition-all duration-300 scale-0 [&.active]:scale-100
+    ">
+            <form id="formNewExpense" class="
+            bg-white text-gray-800 w-full max-w-lg p-6 md:p-8 rounded-2xl shadow-lg space-y-6
+            [&_input]:w-full [&_input]:border [&_input]:rounded-lg [&_input]:px-4 [&_input]:py-2 [&_input]:focus:outline-none [&_input]:focus:ring-2 [&_input]:focus:ring-indigo-500
+            [&_button]:transition [&_button]:duration-300 [&_button]:w-full [&_button]:rounded-lg [&_button]:px-4 [&_button]:py-2
+        ">
+                <h2 class="text-xl font-bold text-center text-gray-900">Add New Expense</h2>
+                <div class="flex justify-center gap-6">
+                    <label>
+                        <input type="radio" name="type" value="Income" class="mr-1"> Income
+                    </label>
+                    <label>
+                        <input type="radio" name="type" value="Expense" class="mr-1"> Expense
+                    </label>
+                </div>
+                <div class="space-y-2">
+                    <label for="name" class="block text-sm font-medium">Name</label>
+                    <input name="name" type="text" placeholder="e.g. Rent">
+                </div>
+                <div class="space-y-2">
+                    <label for="amount" class="block text-sm font-medium">Amount</label>
+                    <input name="amount" type="text" placeholder="e.g. 100">
+                </div>
+                <div class="flex gap-4">
+                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white">Save</button>
+                    <button type="reset" id="btnCancel" class="bg-red-600 hover:bg-red-700 text-white">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <button id="btnAddNewExpense"
+            class="bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium transition flex ml-auto mb-4">
+            + Add New Expense
+        </button>
+        <h1 class="text-2xl font-bold">Expense Tracker</h1>
+
+        <table id="expenseTable"
+            class="w-full text-sm md:text-base text-center table-auto border-separate border-spacing-y-2">
+
+            <template id="expenseHeaderTpl">
+                <tr class="font-semibold ">
+                    <th>No</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th></th>
+                </tr>
+            </template>
+            <template id="expenseItemTpl">
+                <tr>
+                    <td data-index>---</td>
+                    <td data-type>---</td>
+                    <td data-name>---</td>
+                    <td data-amount>---</td>
+                    <td>
+                        <button class="bg-red-800/80 p-[4px_10px]   rounded-xl">X</button>
+                    </td>
+                </tr>
+            </template>
+            <template id="expenseResultTpl">
+                <tr>
+                    <td colspan="3">Total Income: </td>
+                    <td data-total>---</td>
+                </tr>
+            </template>
+        </table>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let DATA_EXPENSE = [
+            {
+                type: 'Income',
+                name: 'Weekly wage',
+                amount: '1000'
+            },
+            {
+                type: 'Expense',
+                name: 'Groceries',
+                amount: '150'
+            },
+            {
+                type: 'Expense',
+                name: 'Electricity Bill',
+                amount: '60'
+            },
+            {
+                type: 'Expense',
+                name: 'Internet Subscription',
+                amount: '40'
+            },
+            {
+                type: 'Expense',
+                name: 'Gym Membership',
+                amount: '50'
+            },
+            {
+                type: 'Income',
+                name: 'Freelance Project',
+                amount: '400'
+            },
+            {
+                type: 'Expense',
+                name: 'Dining Out',
+                amount: '70'
+            }
+        ];
+
+
+        const expenseTable = document.getElementById('expenseTable');
+        const expenseHeader = document.getElementById('expenseHeaderTpl');
+        const expenseTpl = document.getElementById('expenseItemTpl');
+        const expenseResultTpl = document.getElementById('expenseResultTpl');
+        const formNewExpense = document.getElementById('formNewExpense');
+        const modalNewExpense = document.getElementById('modalNewExpense');
+        const btnAddNewExpense = document.getElementById('btnAddNewExpense');
+        const btnCancel = document.getElementById('btnCancel');
+
+
+
+        btnAddNewExpense.addEventListener('click', e => {
+            e.preventDefault()
+            modalNewExpense.classList.add('active');
+        });
+
+        btnCancel.addEventListener('click', e => {
+            e.preventDefault();
+            modalNewExpense.classList.remove('active');
+        });
+
+        formNewExpense.addEventListener('submit', e => {
+            e.preventDefault();
+            const formData = new FormData(formNewExpense);
+            const dataObj = Object.fromEntries(formData);
+            const newExpenseObj = {
+                ...dataObj
+            }
+            DATA_EXPENSE.push(newExpenseObj);
+            renderTable();
+            formNewExpense.reset();
+            modalNewExpense.classList.remove('active');
+        });
+
+        function renderTable() {
+            expenseTable.innerHTML = '';
+            let listExpenses = document.createDocumentFragment();
+            let total = 0;
+            DATA_EXPENSE.forEach((expense, i) => {
+                if (expense.type == 'Income')
+                    total += parseFloat(expense.amount);
+                else
+                    total -= parseFloat(expense.amount);
+                let expenseRow = expenseTpl.content.cloneNode(true);
+                expenseRow.querySelector('button').addEventListener('click', (e) => removeExpense(i));
+                expenseRow.querySelector('[data-index]').textContent = i + 1;
+                expenseRow.querySelector('[data-type]').textContent = expense.type;
+                expenseRow.querySelector('[data-name]').textContent = expense.name;
+                expenseRow.querySelector('[data-amount]').textContent = `${expense.amount} AUD`;
+                listExpenses.appendChild(expenseRow);
+            });
+            let expenseHeaderElement = expenseHeader.content.cloneNode(true);
+            let expenseResultElement = expenseResultTpl.content.cloneNode(true);
+            expenseResultElement.querySelector('[data-total]').textContent = `${total} AUD`;
+            expenseTable.append(expenseHeaderElement, listExpenses, expenseResultElement);
+        }
+
+        function removeExpense(expenseIndex) {
+            DATA_EXPENSE.splice(expenseIndex, 1);
+            renderTable();
+        }
+
+
+        renderTable();
+    })
+</script>
+
+</html>
