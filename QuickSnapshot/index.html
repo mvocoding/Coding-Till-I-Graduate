@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <title>Quick Snapshot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+</head> 
+
+<body class="min-h-screen w-full bg-teal-600 flex justify-center items-center">
+    <div class="block h-[300px] w-[50%] bg-yellow-300 ">
+        Select area to capture
+    </div>
+    <div id="selectedBox" class="bg-gray-600/50 fixed"></div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', e => {
+        let isSelecting = false;
+        let selectedArea = {
+            startX: 0,
+            startY: 0,
+            endX: 0,
+            endY: 0,
+        }
+        const selectedBox = document.getElementById('selectedBox');
+        document.addEventListener('pointerdown', j => {
+            isSelecting = true;
+            selectedArea.startX = j.clientX;
+            selectedArea.startY = j.clientY;
+            selectedBox.style.left = `${j.clientX}`;
+            selectedBox.style.top = `${j.clientY}`;
+        });
+
+        document.addEventListener('pointermove', j => {
+            if (!isSelecting) return;
+            selectedArea.endX = j.clientX;
+            selectedArea.endY = j.clientY;
+
+            let boxWidth = Math.abs(selectedArea.endX - selectedArea.startX);
+            let boxHeight = Math.abs(selectedArea.endY - selectedArea.startY);
+            selectedBox.style.width = boxWidth;
+            selectedBox.style.height = boxHeight;
+
+            selectedBox.style.left = `${Math.min(selectedArea.startX, selectedArea.endX)}`;
+            selectedBox.style.top = `${Math.min(selectedArea.startY, selectedArea.endY)}`;
+        });
+
+        document.addEventListener('pointerup', j => {
+            if (!isSelecting) return;
+            isSelecting = false;
+
+            const rect = selectedBox.getBoundingClientRect();
+            selectedBox.style.display = `none`;
+            console.log('Selected area:', rect);
+            html2canvas(document.body, {
+                x: rect.left,
+                y: rect.top,
+                width: rect.width,
+                height: rect.height
+            }).then((canvas) => {
+                // Create an image from the canvas
+                const img = document.createElement('img');
+                img.src = canvas.toDataURL();
+                document.body.appendChild(img); // Append the image to the body
+                console.log('Snapshot of selected area created');
+            });
+
+        })
+    }); 
+</script>
+
+</html>

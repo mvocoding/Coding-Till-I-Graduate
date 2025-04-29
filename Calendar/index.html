@@ -22,39 +22,53 @@
 bg-[#120533]  min-h-screen flex items-center justify-center">
     <section id="calendar-wrapper" class="text-center relative 
     w-full max-w-md  bg-blue-900  p-4  text-sm ">
-        <div id="panel-new-event"
-            class="
+        <div id="panel-new-event" class="
             transition-all duration-200 
             scale-[0] invisible
             [&.active]:scale-100 [&.active]:visible 
             absolute inset-0 w-full bg-[#D500E8] bg-opacity-40 backdrop-blur-md z-[1000] py-10  px-12  text-base ">
-            <form action="#" class="flex flex-col items-start gap-y-4 ">
-                <p>Add Event on <span class="font-semibold">17/04/2025</span></p>
-                <div class="flex gap-4  ">
-                    <input id="radio-1" name="radio-1" class="hidden peer/radio-1"  type="radio" checked>
-                    <label for="radio-1" class="
-                    peer-checked/radio-1:bg-[#120533] 
-                    py-1 px-2 rounded-lg 
-                    flex items-center gap-3   before:size-3 before:bg-blue-500  before:block before:rounded-full">
-                        Personal
-                    </label>
-                    
+            <form id="form-new-event" action="#" class="flex flex-col items-start gap-y-4 ">
+                <p>Add Event on <span data-dateformat class="font-semibold">---</span></p>
+                <input type="hidden" name="eventDate"/>
+                <div id="eventList-wrapper" class="flex gap-4  
+                [&_input:checked+label]:bg-[#1E006C] [&_input:checked+label]:text-[#FFF9B8]">
+                    <template id="eventTypeTpl">
+                        <input class="hidden" type="radio" name="eventTypeRadio">
+                        <label data-eventtype class="
+                        py-1 px-4  rounded-lg bg-white text-gray-700  cursor-pointer 
+                        flex items-center gap-3 before:size-3 before:bg-[var(--before-bg)] before:block before:rounded-full">
+                            ---
+                        </label>
+                    </template>
                 </div>
                 <div class="w-full ">
-                    <input class="text-gray-800  rounded-lg   w-full p-2 " type="text" placeholder="eg. meeting">
+                    <input name="eventNote" class="text-gray-800  rounded-lg   w-full p-2 " type="text" placeholder="eg. meeting">
                 </div>
-                <button class="font-semibold  rounded-lg  uppercase bg-[#120533]/80  hover:bg-[#120533] w-full p-2 ">Save Event</button>
+                <button id="addNewEventBtn"
+                    class="font-semibold  rounded-lg  uppercase bg-[#120533]/80  hover:bg-[#120533] w-full p-2 ">Save
+                    Event</button>
             </form>
         </div>
-        <div id="eventPanel" class="transition-all duration-200 
-        invisible max-h-0 [&.active]:visible [&.active]:max-h-[1000px]
-        text-gray-300 absolute left-0 top-full w-full bg-[#150045] py-6  space-y-1 ">
+        <div id="eventPanel" class="transition-all duration-200  
+        invisible [&.active]:visible 
+         max-h-0 [&.active]:max-h-[1000px]
+        text-gray-300 absolute left-0 top-full w-full bg-[#150045] py-6  space-y-3   ">
             <div>
-                <p>Wednesday</p>
-                <p>16 April</p>
+                <p data-datename>---</p>
+                <p data-dateformat>---</p>
             </div>
             <span class="material-symbols-outlined text-6xl">calendar_month</span>
-            <p class="text-gray-500 ">No events for this day</p>
+            <ul>
+                <template id="noeventMessageTpl">
+                    <li class="text-gray-500 ">No events for this day</li>
+                </template>
+                <template id="eventItemTpl">
+                    <li class="px-6 py-2   text-left space-x-2  text-md ">
+                        <span data-eventype class="inline-block size-2 rounded-full"></span>
+                        <span data-eventnote></span>
+                    </li>
+                </template>
+            </ul>
             <button class="px-6 py-2  bg-[#D500E8] rounded-full ">Add Event</button>
         </div>
         <div class="relative text-2xl 
@@ -88,11 +102,22 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
         </ul>
     </section>
     <script>
+        const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const noeventMessageTpl = document.getElementById('noeventMessageTpl');
+        const eventItemTpl = document.getElementById('eventItemTpl');
         const dateWrapper = document.getElementById('date-wrapper');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const dateStr = document.getElementById('dateStr');
         const eventPanel = document.getElementById('eventPanel');
+        const panelNewEvent = document.getElementById('panel-new-event');
+        const addNewEventBtn = document.getElementById('addNewEventBtn');
+
+        const formNewEvent = document.getElementById('form-new-event');
+
+        const eventListWrapper = document.getElementById('eventList-wrapper');
+        const eventTypeTpl = document.getElementById('eventTypeTpl');
+
         let currentDate = new Date();
         let currYear = currentDate.getFullYear();
         let currMonth = currentDate.getMonth();
@@ -158,31 +183,38 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
                 id: 9,
                 date: '2025-04-26',
                 time: '',
-                event_id: 3,
+                event_id: 1,
                 desc: "Wife's birthday"
+            },
+            {
+                id: 10,
+                date: '2025-04-26',
+                time: '',
+                event_id: 2,
+                desc: "Thinking About Future "
             }
         ];
 
-        const eventTypes = [
-            {
+        const eventTypes = { 
+            1: {
                 id: 1,
                 name: "Personal",
                 //icon: "restaurant",
                 color: "green"
             },
-            {
+            2: {
                 id: 2,
                 name: "Work",
                 //icon: "celebration",
                 color: "blue"
             },
-            {
+            3: {
                 id: 3,
                 name: "Family",
                 //icon: "shopping_cart",
                 color: "red"
             },
-        ];
+        };
 
         function hasEvent(dateStr) {
             return userEvents.some(e => {
@@ -198,10 +230,56 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
             const formattedDate = `${date.getFullYear()}-${String(date.getMonth()).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
             return formattedDate;
         }
-        function createDateEl(date) {
+        let currentActivePanel = null;
+        function createDateEl(date, defaultClass = '') {
+            const formattedDate = dateToStr(date);
+            const dateHasEvent = hasEvent(formattedDate);
+            const dateEl = document.createElement('span');
+            dateEl.innerText = date.getDate();
+            dateEl.setAttribute('data-date', formattedDate);
+            if (defaultClass)
+                dateEl.classList.add(defaultClass);
+            if (dateHasEvent)
+                dateEl.classList.add('hasevent');
 
+            dateEl.addEventListener('click', handleDateClick);
+            return dateEl;
+        }
+
+        let currentDateStr = '';
+        function handleDateClick(e) {
+            if (currentActivePanel)
+                currentActivePanel.classList.remove('active');
+            eventPanel.querySelector('ul').innerHTML = '';
+            const dateStr = e.currentTarget.getAttribute('data-date');
+            setTimeout(() => {
+                let eventElements = userEvents.filter(e => {
+                    return e.date == dateStr
+                }).map(e => {
+                    const eventEl = eventItemTpl.content.cloneNode(true);
+                    const eventColor = eventTypes[e.event_id].color;
+                    eventEl.querySelector('[data-eventype]').style.backgroundColor = eventColor;
+                    eventEl.querySelector('[data-eventnote]').innerText = e.desc;
+                    return eventEl;
+                });
+                if(!eventElements.length)
+                    eventElements = [noeventMessageTpl.content.cloneNode(true)];
+                eventPanel.querySelector('ul').append(...eventElements); 
+
+                const [year, month, day] = dateStr.split('-').map(s => parseInt(s));
+                const dateObj = new Date(year, month - 1, day);
+                eventPanel.querySelector('[data-datename]').innerText = DAYS[dateObj.getDay()];
+                eventPanel.querySelector('[data-dateformat]').innerText = dateObj.toLocaleDateString('en-US', {
+                    day: 'numeric',
+                    month: 'long'
+                });
+                eventPanel.classList.add('active');
+                currentActivePanel = eventPanel;
+                currentDateStr = dateStr;
+            }, 300);
         }
         function renderCalendarDays(year, month) {
+            dateWrapper.innerHTML = '';
             const firstDate = new Date(year, month - 1, 1);
             const lastDate = new Date(year, month, 0);
 
@@ -217,28 +295,29 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
             for (let i = firstDayOfWeek - 1; i >= 0; i--) {
                 let tmp = new Date(firstDate);
                 tmp.setDate(i * -1);
-                const formattedDate = dateToStr(tmp);
-                const dateHasEvent = hasEvent(formattedDate);
-                let element = `<span data-date="${formattedDate}" class="inactive ${dateHasEvent && 'hasevent'}">${tmp.getDate()}</span>`;
-                calendarDay.push(element);
+                const dateEl = createDateEl(tmp, 'inactive');
+                calendarDay.push(dateEl);
             }
             for (let i = 1; i <= lastDate.getDate(); i++) {
                 let tmp = new Date(year, month, i);
-                const formattedDate = dateToStr(tmp);
-                const dateHasEvent = hasEvent(formattedDate);
-                let element = `<span data-date="${formattedDate}" class="${dateHasEvent && 'hasevent'}">${i}</span>`;
-                calendarDay.push(element);
+                const dateEl = createDateEl(tmp);
+                calendarDay.push(dateEl);
             }
             for (let i = 1; i <= 6 - lastDayOfWeek; i++) {
                 let tmp = new Date(lastDate);
                 tmp.setDate(tmp.getDate() + i);
-                const formattedDate = dateToStr(tmp);
-                const dateHasEvent = hasEvent(formattedDate);
-                let element = `<span data-date="${formattedDate}" class="inactive ${dateHasEvent && 'hasevent'}">${tmp.getDate()}</span>`;
-                calendarDay.push(element);
+                const dateEl = createDateEl(tmp, 'inactive');
+                calendarDay.push(dateEl);
             }
-            dateWrapper.innerHTML = calendarDay.join('');
+            dateWrapper.append(...calendarDay);
         }
+
+        const addEventBtn = eventPanel.querySelector('button');
+        addEventBtn.addEventListener('click', e => {
+            panelNewEvent.querySelector('[data-dateformat]').innerText = currentDateStr;
+            panelNewEvent.querySelector('input[name="eventDate"]').setAttribute('value', currentDateStr);
+            panelNewEvent.classList.add('active')
+        });
 
         prevBtn.addEventListener('click', e => {
             currentDate.setMonth(currentDate.getMonth() - 1);
@@ -247,6 +326,40 @@ bg-[#120533]  min-h-screen flex items-center justify-center">
         nextBtn.addEventListener('click', e => {
             currentDate.setMonth(currentDate.getMonth() + 1);
             renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);
+        });
+
+        
+        let eventEls = [];
+        let index = 1;
+        for(const [eventId, eventObj] of Object.entries(eventTypes)){
+            const eventEl = eventTypeTpl.content.cloneNode(true);
+            const input = eventEl.querySelector('input');
+            const label = eventEl.querySelector('label');
+            input.setAttribute('id', `radio-${index}`);
+            input.setAttribute('value', eventObj.id);
+            label.setAttribute('for', `radio-${index}`);
+            label.innerText = eventObj.name;
+            label.style.setProperty('--before-bg', eventObj.color); 
+            if(index == 1)
+                eventEl.querySelector('input').setAttribute('checked', true);
+            eventEls.push(eventEl);
+            ++index;
+        }
+        eventListWrapper.append(...eventEls);
+
+
+        addNewEventBtn.addEventListener('click', e => {
+            e.preventDefault();
+            const newEventData = Object.fromEntries(new FormData(formNewEvent));
+            userEvents.push(            {
+                id: 22,
+                date: newEventData.eventDate,
+                time: '',
+                event_id: parseInt(newEventData.eventTypeRadio),
+                desc: newEventData.eventNote
+            });
+            renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);
+            panelNewEvent.classList.remove('active');
         });
 
         renderCalendarDays(currentDate.getFullYear(), currentDate.getMonth() + 1);

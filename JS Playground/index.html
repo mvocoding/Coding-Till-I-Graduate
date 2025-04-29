@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contextmenu Event Example</title>
+    <style>
+        .context-menu {
+            display: none;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="right-click-area" style="width: 300px; height: 300px; background-color: lightgray; text-align: center;">
+        Right-click inside this box
+    </div>
+
+    <div class="context-menu" id="context-menu">
+        <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+        </ul>
+    </div>
+
+    <script>
+        const rightClickArea = document.getElementById('right-click-area');
+        const contextMenu = document.getElementById('context-menu');
+
+        // Listen for the contextmenu event on the right-click area
+        rightClickArea.addEventListener('contextmenu', (e) => {
+            e.preventDefault(); // Prevent the default context menu
+
+            // Get the position where the right-click occurred
+            const xPos = e.offsetX;
+            const yPos = e.offsetY;
+
+            // Position the custom context menu where the right-click happened
+            contextMenu.style.left = `${xPos}px`;
+            contextMenu.style.top = `${yPos}px`;
+
+            // Show the custom context menu
+            contextMenu.style.display = 'block';
+        });
+
+        // Hide the context menu when clicking anywhere else
+        window.addEventListener('click', () => {
+            contextMenu.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
