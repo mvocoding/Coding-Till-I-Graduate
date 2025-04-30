@@ -1,0 +1,340 @@
+<html>
+
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..20');
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+    </style>
+</head>
+
+<body class="font-[Inter] leading-relaxed  flex items-center justify-center min-h-screen w-full py-10 
+    text-base text-gray-800 
+    bg-gradient-to-tr from-[#f7dfe2] to-[#8D55E4] ">
+    <form id="formCheckOut" class="
+        space-y-1  text-sm 
+        rounded-xl px-5 py-10 border-t-4 border-t-[#8D55E4] 
+        w-[90%] md:w-[50%] bg-white
+        [&_.form-field]:transition-all [&_.form-field]:duration-200   [&_.form-field]:flex [&_.form-field]:flex-col [&_.form-field]:space-y-1 
+        [&_.form-group]:space-y-4  [&_.form-title]:font-semibold [&_.form-title]:text-[#8D55E4] [&_.form-title]:pl-2 [&_.form-title]:text-base  [&_.form-title]:border-l-4 [&_.form-title]:border-l-[#8D55E4]
+        [&_.form-control.has-error+span]:visible
+        [&_.form-control]:border-2 [&_.form-control]:rounded-lg  [&_.form-control]:p-2
+        
+        [&_.panelPaymentInfo_.form-field:not(.paymentTypeRatio)]:max-h-0 [&_.panelPaymentInfo_.form-field:not(.paymentTypeRatio)]:invisible  
+        [&_.panelPaymentInfo.active_.form-field:not(.paymentTypeRatio)]:max-h-[1000px]
+        [&_.panelPaymentInfo.active_.form-field:not(.paymentTypeRatio)]:visible  
+        " action="#">
+        <div class="form-field">
+            <button class="text-lg text-white bg-[#8D55E4]/90 hover:bg-[#8D55E4]  py-2 rounded-xl ">Place
+                Order</button>
+        </div>
+    </form>
+
+    <template id="formGroupTpl">
+        <div class="form-group">
+            <h3 class="form-title" data-title>---</h3>
+        </div>
+    </template>
+    <template id="formFieldTpl">
+        <div class="form-field">
+            <label for="" class="form-label" data-label>---</label>
+            <input class="text-sm form-control" data-control type="text" placeholder="---">
+            <span class="text-red-800  text-xs invisible " data-message>---</span>
+        </div>
+    </template>
+
+    <script>
+        function handlePaymentTypeChange(paymentType) {
+            if (paymentType === 'card')
+                panelCardInfo.classList.add('active');
+            else
+                panelCardInfo.classList.remove('active');
+        }
+
+        function formatCardNumber(event) {
+            event.preventDefault();
+            const isDigit = /\d/.test(event.key);
+            const isBackspace = event.key === 'Backspace';
+
+            if (isBackspace) {
+                event.target.value = event.target.value.slice(0, -1);
+                return;
+            }
+            if (!isDigit || event.target.value.length >= 19)
+                return;
+            event.target.value += event.key;
+            event.target.value = event.target.value.replaceAll(/\d{4}(?=\d)/g, (c) => {
+                return `${c} `;
+            });
+        }
+
+        function formatCardCVC(event) {
+            event.preventDefault();
+            const isDigit = /\d/.test(event.key);
+            const isBackspace = event.key === 'Backspace';
+
+            if (isBackspace) {
+                event.target.value = event.target.value.slice(0, -1);
+                return;
+            }
+            if (!isDigit || event.target.value.length >= 3)
+                return;
+            event.target.value += event.key;
+        }
+
+        function formatCardExpired(event) {
+            event.preventDefault();
+
+            const isDigit = /\d/.test(event.key);
+            const isBackspace = event.key === 'Backspace';
+
+            let raw = event.target.value.replace(/\D/g, '');
+
+            if (isBackspace) {
+                raw = raw.slice(0, -1);
+            } else if (isDigit && raw.length < 4) {
+                const next = raw + event.key;
+
+                if (next.length === 1 && Number(event.key) > 1) {
+                    raw = '0' + event.key;
+                } else if (next.length === 2 && Number(next) > 12) {
+                    return; // Invalid month
+                } else {
+                    raw = next;
+                }
+            } else {
+                return;
+            }
+
+            const formatted = raw.length >= 3
+                ? raw.slice(0, 2) + '/' + raw.slice(2, 4)
+                : raw;
+
+            // ✅ Expiry check (only when MM/YY is complete)
+            if (formatted.length === 5) {
+                const [mm, yy] = formatted.split('/').map(n => parseInt(n, 10));
+                const now = new Date();
+                const currentMM = now.getMonth() + 1;
+                const currentYY = now.getFullYear() % 100;
+
+                if (yy < currentYY || (yy === currentYY && mm < currentMM)) {
+                    return; // Expired card
+                }
+            }
+
+            event.target.value = formatted;
+        }
+
+        const FORM = {
+            contactInfo: {
+                groupTitle: 'Contact Info',
+                groupName: 'contactInfo',
+                inputs: {
+                    email: {
+                        name: 'email',
+                        label: 'Email',
+                        placeHodler: 'Enter Email...',
+                        validate: (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e),
+                        errorMessage: 'Your Email is invalid!'
+                    },
+                }
+            },
+            shippingInfo: {
+                groupTitle: 'Shipping Info',
+                groupName: 'shippingInfo',
+                inputs: {
+                    name: {
+                        name: 'name',
+                        label: 'Name: ',
+                        placeHodler: 'Enter Name...',
+                        validate: (e) => /^[a-zA-Z\s'-]{2,50}$/.test(e),
+                        errorMessage: 'Your Name is invalid!'
+                    },
+                    country: {
+                        name: 'country',
+                        label: 'Country: ',
+                        placeHodler: 'Enter Country / Region...',
+                        validate: (e) => /^[a-zA-Z\s]+$/.test(e),
+                        errorMessage: 'Your Country is invalid!'
+                    },
+                    address: {
+                        name: 'address',
+                        label: 'Address: ',
+                        placeHodler: 'Enter Address...',
+                        validate: (e) => /^[a-zA-Z0-9\s,'-]{5,100}$/.test(e),
+                        errorMessage: 'Your Address is invalid!'
+                    },
+                }
+            },
+            paymentInfo: {
+                groupTitle: 'Payment Info',
+                groupName: 'paymentInfo',
+                classes: 'panelPaymentInfo active',
+                inputs: {
+                    cardnumber: {
+                        classes: '',
+                        name: 'cardnumber',
+                        label: 'Card Number: ',
+                        placeHodler: 'eg. 4224 5678 9956 5558',
+                        validate: () => true,
+                        format: (e) => formatCardNumber(e),
+                        errorMessage: 'Your Card Number is invalid!'
+                    },
+                    cardExpired: {
+                        classes: '',
+                        name: 'cardExpired',
+                        label: 'Expired: ',
+                        placeHodler: 'eg. 12/24',
+                        validate: () => true,
+                        format: (e) => formatCardExpired(e),
+                        errorMessage: 'Your Expired Date is invalid!'
+                    },
+                    cardCVC: {
+                        classes: '',
+                        name: 'cardCVC',
+                        label: 'CVC: ',
+                        placeHodler: 'eg. 258',
+                        validate: () => true,
+                        format: (e) => formatCardCVC(e),
+                        errorMessage: 'Your CVC is invalid!'
+                    },
+                }
+            },
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const $ = selector => document.getElementById(selector);
+            const formCheckOut = $('formCheckOut');
+            const formGroupTpl = $('formGroupTpl');
+            const formFieldTpl = $('formFieldTpl');
+
+            const createField = ({ name, label, placeHodler, errorMessage, classes = '', format }, groupName) => {
+                const field = formFieldTpl.content.cloneNode(true);
+                const el = field.querySelector('.form-field');
+                el.classList.add(...classes.split(' ').filter(Boolean));
+
+                const labelEl = field.querySelector('[data-label]');
+                const inputEl = field.querySelector('[data-control]');
+                const messageEl = field.querySelector('[data-message]');
+
+                labelEl.textContent = label;
+                labelEl.setAttribute('for', name);
+
+                inputEl.name = `${groupName}.${name}`;
+                inputEl.placeholder = placeHodler;
+                messageEl.textContent = errorMessage;
+
+                if (format) {
+                    inputEl.addEventListener('keydown', format);
+                }
+
+                return field;
+            };
+
+            const createPaymentTypeSelector = () => {
+                const wrapper = document.createElement('div');
+                wrapper.className = `
+        paymentTypeRatio
+      form-field !flex-row justify-center gap-x-2 *:flex-1 
+      [&_input]:sr-only hover:[&_label]:cursor-pointer 
+      hover:[&_label]:bg-gray-100 
+      [&_input:checked+label]:border-[#8D55E4] 
+      [&_input:checked+label]:bg-gray-100 text-center
+    `;
+
+                const paymentTypes = [
+                    { id: 'card', label: 'Card', icon: 'credit_card', checked: true },
+                    { id: 'cash', label: 'Cash', icon: 'paid' },
+                    { id: 'paypal', label: 'PayPal', icon: 'account_balance' },
+                ];
+
+                paymentTypes.forEach(({ id, label, icon, checked }) => {
+                    const input = document.createElement('input');
+                    input.type = 'radio';
+                    input.name = 'paymentType';
+                    input.id = id;
+                    input.value = id;
+                    input.className = 'sr-only form-control';
+                    input.addEventListener('change', e => {
+                        const isCardPayment = e.target.value === 'card';
+                        if (isCardPayment)
+                            formCheckOut.querySelector('.panelPaymentInfo').classList.add('active');
+                        else
+                            formCheckOut.querySelector('.panelPaymentInfo').classList.remove('active');
+                    });
+                    if (checked) input.checked = true;
+
+                    const labelEl = document.createElement('label');
+                    labelEl.setAttribute('for', id);
+                    labelEl.className = 'form-label flex !flex-col border-2 py-5 rounded-xl';
+                    labelEl.innerHTML = `
+        <span class="material-symbols-outlined text-yellow-600">${icon}</span>
+        ${label}
+      `;
+
+                    wrapper.appendChild(input);
+                    wrapper.appendChild(labelEl);
+                });
+
+                return wrapper;
+            };
+
+            const createFormGroup = ({ groupName, groupTitle, inputs = [], classes = '' }) => {
+                const group = formGroupTpl.content.cloneNode(true);
+                const groupEl = group.querySelector('.form-group');
+
+                if (classes) groupEl.classList.add(...classes.split(' '));
+                group.querySelector('[data-title]').textContent = groupTitle;
+
+                if (groupTitle === 'Payment Info') {
+                    groupEl.appendChild(createPaymentTypeSelector());
+                }
+
+                Object.values(inputs).forEach(input => {
+                    groupEl.appendChild(createField(input, groupName));
+                });
+
+                return group;
+            };
+
+            formCheckOut.addEventListener('submit', e => {
+                e.preventDefault();
+                let valid = true;
+
+                const inputs = formCheckOut.querySelectorAll('.form-control');
+                inputs.forEach(input => {
+                    const [groupName, fieldName] = input.name.split('.');
+                    const fieldDef = FORM?.[groupName]?.inputs?.[fieldName];
+
+                    const messageEl = input.closest('.form-field').querySelector('[data-message]');
+                    if (!fieldDef || !fieldDef.validate) return;
+                    const isValid = fieldDef.validate(input.value.trim());
+                    input.classList.toggle('has-error', !isValid);
+                    messageEl.classList.toggle('invisible', isValid);
+
+                    if (!isValid) valid = false;
+                });
+
+                if (valid) {
+                    alert('Form submitted successfully!');
+                }
+            });
+
+            Object.values(FORM).forEach(section => {
+                const group = createFormGroup(section);
+                formCheckOut.insertBefore(group, formCheckOut.lastElementChild);
+            });
+        });
+
+    </script>
+</body>
+
+</html>
