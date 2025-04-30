@@ -101,7 +101,7 @@
 
             if (isBackspace) {
                 raw = raw.slice(0, -1);
-            } else if (isDigit && raw.length < 4) {
+            } else if (isDigit && raw.length < 4)   {
                 const next = raw + event.key;
 
                 if (next.length === 1 && Number(event.key) > 1) {
@@ -126,9 +126,6 @@
                 const currentMM = now.getMonth() + 1;
                 const currentYY = now.getFullYear() % 100;
 
-                if (yy < currentYY || (yy === currentYY && mm < currentMM)) {
-                    return; // Expired card
-                }
             }
 
             event.target.value = formatted;
