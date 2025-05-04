@@ -1,0 +1,281 @@
+<html>
+
+<head>
+    <title>MAX VO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+    <link rel="shortcut icon" href="assets/favicon.png" />
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        @font-face {
+            font-family: interstate;
+            src: url(https://use.typekit.net/af/e5199f/00000000000000003b9ae7f4/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff2"),
+                url(https://use.typekit.net/af/e5199f/00000000000000003b9ae7f4/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("woff"),
+                url(https://use.typekit.net/af/e5199f/00000000000000003b9ae7f4/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3) format("opentype");
+            font-weight: 400;
+            font-style: normal;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: interstate;
+            src: url(https://use.typekit.net/af/630ec8/00000000000000003b9ae7f8/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff2"),
+                url(https://use.typekit.net/af/630ec8/00000000000000003b9ae7f8/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("woff"),
+                url(https://use.typekit.net/af/630ec8/00000000000000003b9ae7f8/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3) format("opentype");
+            font-weight: 700;
+            font-style: normal;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+
+        @font-face {
+            font-family: nimbus-sans;
+            src: url(https://use.typekit.net/af/da0c19/00000000000000000001518d/27/l?subset_id=2&fvd=n4&v=3) format("woff2"),
+                url(https://use.typekit.net/af/da0c19/00000000000000000001518d/27/d?subset_id=2&fvd=n4&v=3) format("woff"),
+                url(https://use.typekit.net/af/da0c19/00000000000000000001518d/27/a?subset_id=2&fvd=n4&v=3) format("opentype");
+            font-weight: 400;
+            font-style: normal;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: nimbus-sans;
+            src: url(https://use.typekit.net/af/7ba522/00000000000000000001011f/27/l?subset_id=2&fvd=i4&v=3) format("woff2"),
+                url(https://use.typekit.net/af/7ba522/00000000000000000001011f/27/d?subset_id=2&fvd=i4&v=3) format("woff"),
+                url(https://use.typekit.net/af/7ba522/00000000000000000001011f/27/a?subset_id=2&fvd=i4&v=3) format("opentype");
+            font-weight: 400;
+            font-style: italic;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: nimbus-sans;
+            src: url(https://use.typekit.net/af/360cf4/000000000000000000012544/27/l?subset_id=2&fvd=n7&v=3) format("woff2"),
+                url(https://use.typekit.net/af/360cf4/000000000000000000012544/27/d?subset_id=2&fvd=n7&v=3) format("woff"),
+                url(https://use.typekit.net/af/360cf4/000000000000000000012544/27/a?subset_id=2&fvd=n7&v=3) format("opentype");
+            font-weight: 700;
+            font-style: normal;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: nimbus-sans;
+            src: url(https://use.typekit.net/af/a44ffc/000000000000000000010121/27/l?subset_id=2&fvd=i7&v=3) format("woff2"),
+                url(https://use.typekit.net/af/a44ffc/000000000000000000010121/27/d?subset_id=2&fvd=i7&v=3) format("woff"),
+                url(https://use.typekit.net/af/a44ffc/000000000000000000010121/27/a?subset_id=2&fvd=i7&v=3) format("opentype");
+            font-weight: 700;
+            font-style: italic;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        @font-face {
+            font-family: nimbus-sans;
+            src: url(https://use.typekit.net/af/50ea52/00000000000000000001011c/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("woff2"),
+                url(https://use.typekit.net/af/50ea52/00000000000000000001011c/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("woff"),
+                url(https://use.typekit.net/af/50ea52/00000000000000000001011c/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3) format("opentype");
+            font-weight: 300;
+            font-style: normal;
+            font-stretch: normal;
+            font-display: auto;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white-alpha-70: #ffffffb3;
+            --white: white;
+            --siteblack: #191923;
+            --grey-30: #818187;
+            --cornflower-blue: #65afff;
+            --turqoise: #36f1cd;
+            --gray20: #b7b9b6;
+            --white-alpha-10: #ffffff1a;
+            --black-10: #2d2d37;
+            --black20: #42424b;
+            --blackalpha10: #0000001a;
+            --grey-10: #e5e7e3;
+            --white-alpha-50: #ffffff80;
+            --white-alpha-30: #ffffff4d;
+            --white-alpha-20: #fff3;
+            --21_black: #191919;
+            --burnt-sienna: #c45131;
+            --forest: #a6a670;
+            --royal-blue: #3066be;
+            --darker-turqoise: #32dcbb;
+            --transparent-white: #fff0;
+            --worktiledropshadowwhite: #0000003d;
+            --white-5: #ffffff0d;
+            --black-alpha-50: #00000080;
+            --black-alpha-30: #0000004d;
+            --black-alpha-20: #0003;
+            --sand: #baafa1;
+
+            --w-sidebar: 100px;
+            --w-about: 300px;
+        }
+
+        .nimbus {
+            font-family: nimbus-sans, sans-serif;
+            font-weight: 300;
+        }
+
+        .interstate {
+            font-family: interstate, sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 48
+        }
+
+        .bg-hightlight {
+            background-image: linear-gradient(45deg, #cb0293 22%, #1433d8)
+        }
+
+        @keyframes fadeLoop{
+            0%, 100%{ opacity: 0;}
+            50%{opacity: 1;}
+        }
+
+        .fade-loop{
+            animation: fadeLoop 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="
+text-base leading-relaxed nimbus
+bg-[#191919] w-full min-h-screen text-white/50 p-10  
+">
+    <div id="loader" class="fixed inset-0 flex items-center justify-center z-[50] bg-[#191919]">
+        <img src="assets/logo.png" class="w-80 fade-loop" alt="Loading...">
+    </div>
+    <aside class="fixed left-0 top-0 w-[var(--w-sidebar)] min-h-screen flex ">
+        <ul class="list-social flex flex-col gap-4 items-center m-auto mb-10   
+            [&_li]:p-1  [&_li]:rounded-xl [&_li]:bg-white/10 hover:[&_li]:bg-white/20   [&_img]:w-12">
+                <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+            </ul>
+    </aside>
+    <aside class="fixed right-0 top-0 w-[calc((100%-100px)*0.5)]  p-10 min-h-screen space-y-4 flex flex-col justify-center ">
+        <img src="assets/logo.png"
+            alt="NAME" class="w-60  object-cover mx-auto ">
+        <input class="sr-only peer/design" type="radio" name="tab" id="design"  checked>
+        <input class="sr-only peer/projects" type="radio" name="tab" id="projects" >
+        <div class="interstate  text-lg text-white font-semibold  flex gap-2 *:justify-center  *:flex *:items-center *:gap-1 *:flex-1 
+        [&_label]:rounded-2xl [&_label]:cursor-pointer 
+        peer-checked/design:[&_.label-design]:bg-white/10 
+        peer-checked/projects:[&_.label-projects]:bg-white/10 
+        ">
+            <label class="label-design" for="design">
+                <img src="assets/linkedin.svg" class="w-12" alt="">
+                <span>Design</span>
+            </label>
+            <label class="label-projects" for="projects">
+                <img src="assets/linkedin.svg" class="w-12" alt="">
+                <span>Project</span>
+            </label>
+        </div>
+        <div class="grid [grid-template-areas:'stack']
+        *:[grid-area:stack] *:transition-all *:duration-500  
+        *:-translate-y-[1000px] overflow-hidden *:space-y-4 
+        peer-checked/design:[&_.design]:-translate-y-0
+        peer-checked/projects:[&_.projects]:-translate-y-0   ">
+            <div class="design">
+                <p class="text-lg">Designing since 2016. I’m a Senior Product Designer living in New York City. I have a background
+                    in graphic design and in my spare time I risograph print and make mixed drinks. Let’s get in touch.
+                </p>
+                <p class="text-lg  ">Want to connect? Email me or schedule time to chat</p>
+                <ul class="list-social flex flex-row gap-4
+                [&_li]:p-1  [&_li]:rounded-xl [&_li]:bg-white/10 hover:[&_li]:bg-white/20   [&_img]:w-12">
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="projects">
+                <p class="text-lg">Designing since 2016. I’m a Senior Product Designer living in New York City. I have a background
+                    in graphic design and in my spare time I risograph print and make mixed drinks. Let’s get in touch.
+                </p>
+                <p class="text-lg  ">Want to connect? Email me or schedule time to chat</p>
+                <ul class="list-social flex flex-row gap-4
+                [&_li]:p-1  [&_li]:rounded-xl [&_li]:bg-white/10 hover:[&_li]:bg-white/20   [&_img]:w-12">
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                    <li><a href="#"><img src="assets/linkedin.svg" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <main class="ml-[var(--w-sidebar)] w-[calc((100%-100px)*0.5)] py-8  ">
+        <ul class="
+        flex flex-col gap-14 
+        text-lg  
+        *:bg-white/10   *:flex *:gap-4  *:items-center *:rounded-3xl *:p-5  [&_li_*]:flex-1 [&_.description]:space-y-4 
+        [&_.highlight]:font-[interstate] [&_.highlight]:text-white [&_.highlight]:font-bold  [&_h2]:text-3xl  
+        
+        [&_button]:flex [&_button]:ml-auto 
+
+        *:max-h-[350px] [&_.media]:relative [&_.media]:bottom-6 [&_video]:max-h-[450px]                              
+        
+        [&_button]:px-4 [&_button]:py-1 [&_button]:rounded-full [&_button]:bg-white/10 hover:[&_button]:bg-white/20 
+        ">
+            <li class="bg-hightlight mx-auto ">
+                <div class="media">
+                    <video muted loop autoplay>
+                        <source src="https://atooleportfoliovideos.s3.us-east-2.amazonaws.com/Revamp21+VideoFiles/FBWatchFiles/1movie-webm.webm" >
+                    </video>
+                </div>
+                <div class="description">
+                    <h2 class="highlight">Evolving Facebook Videos
+                    </h2>
+                    <p>Designing for Entertainment experiences for Facebook Live, in International markets, and growing the product in new and exciting places.
+                    </p>
+                    <button class="highlight ">Go to Videos</button>
+                </div>
+            </li>
+
+            <li>
+                <div class="media">
+                    <img src="https://cdn.prod.website-files.com/5d47b5fd3a861dac3e8bef09/60e9d051e195f8cbd20394b9_FDS_SpecDesktop3-p-500.png"  alt="">
+                </div>
+                <div class="description">
+                    <h2 class="highlight">Evolving Facebook Videos
+                    </h2>
+                    <p>Designing for Entertainment experiences for Facebook Live, in International markets, and growing the product in new and exciting places.
+                    </p>
+                    <button class="highlight ">Go to Videos</button>
+                </div>
+            </li>
+        </ul>
+    </main>
+</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const $ = selector => document.getElementById(selector);
+            const $$ = selector => document.querySelector(selector);
+
+            const $loader = $('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 3000);
+        })
+    </script>
+</html>

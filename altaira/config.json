@@ -1,7 +1,14 @@
 {
     "snipelist": {
-        "Mon Apr 28": {
-            "location": "short",
+        "Sat May 03": {
+            "location": "full",
+            "timestart": "06:00",
+            "maxtime_start": "09:00",
+            "minhour": 7,
+            "maxhour": 100
+        },
+        "Sun May 04": {
+            "location": "full",
             "timestart": "06:00",
             "maxtime_start": "09:00",
             "minhour": 7,
