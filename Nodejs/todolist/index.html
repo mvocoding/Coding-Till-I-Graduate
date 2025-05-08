@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>A Simple Todo List App</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="min-h-screen w-full bg-blue-500 text-white text-lg 
+    flex items-center justify-center text-base leading-relaxed 
+    [&_input]:text-gray-800 ">
+        <form  
+        action="/addtask" method="POST"
+        class="
+        text-center 
+        flex flex-col gap-y-5  
+        p-5 rounded-3xl w-full max-w-md  min-h-[300px] bg-green-500 ">
+            <h1 class="font-bold text-xl uppercase">To Do List</h1>
+            <ul class="flex flex-col text-left *:flex *:justify-between ">
+                {{TASKS}}
+            </ul>
+            <input placeholder="Task Name...."
+            class="rounded-xl px-4 py-1 "
+            type="text" name="taskName">
+            <button type="submit" class="bg-blue-500/70 rounded-full hover:bg-blue-500/100 ">Add Task</button>
+        </form>
+    </body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btnsDelete = document.querySelectorAll('.btnDelete');
+            btnsDelete.forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const taskID = e.target.getAttribute('data-id');
+                    const deleteTaskResp = await fetch(`/delete/${taskID}`,
+                        {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ id: taskID })
+                        }
+                    );
+                    if(deleteTaskResp.ok){
+                        e.target.closest('li').remove();
+                    }
+                    else{
+                        alert('Failed to delete the task!');
+                    }
+                })
+            })
+        })
+    </script>
+</html>
